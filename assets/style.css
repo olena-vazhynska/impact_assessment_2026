@@ -375,6 +375,44 @@ address { font-style: normal; }
 .dos-quick-btn:hover { border-color: var(--accent); border-style: solid; }
 .dos-feeds { border-top: 1px solid var(--border); padding-top: 12px; }
 
+/* Station S1 */
+.s1-add-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.s1-add-row select { flex: 0 1 auto; }
+.s1-add-row input { flex: 1 1 200px; font: inherit; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); min-width: 0; }
+.rel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+@media (max-width: 720px) { .rel-grid { grid-template-columns: 1fr; } }
+.rel-col { min-width: 0; }
+.rel-head { margin: 0 0 8px; font-size: 14px; display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; border-radius: 8px; background: var(--surface-2); }
+.rel-head span { font-weight: 700; color: var(--muted); }
+.rel-head.rel-3 { border-left: 4px solid var(--st-red-dot); }
+.rel-head.rel-2 { border-left: 4px solid var(--st-amber-dot); }
+.rel-head.rel-1 { border-left: 4px solid var(--st-grey-dot); }
+.rel-zone { min-height: 90px; display: flex; flex-direction: column; gap: 10px; padding: 8px; border: 1.5px dashed var(--border); border-radius: 10px; background: var(--surface); }
+.rel-zone.drop-hover { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.rel-empty { font-size: 12px; margin: 6px; }
+.imp-card { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid hsl(var(--imp-hue), 55%, 45%); border-radius: 10px; padding: 10px 12px; cursor: grab; box-shadow: var(--shadow); }
+.imp-card.dragging { opacity: .5; }
+.imp-top { display: flex; align-items: center; gap: 8px; }
+.imp-dot { width: 10px; height: 10px; border-radius: 50%; background: hsl(var(--imp-hue), 55%, 45%); flex: none; }
+.imp-domain { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: hsl(var(--imp-hue), 45%, 38%); flex: 1 1 auto; min-width: 0; }
+.imp-x { appearance: none; border: 0; background: var(--border); color: var(--text); width: 20px; height: 20px; border-radius: 50%; cursor: pointer; font-size: 15px; line-height: 1; }
+.imp-x:hover { background: var(--live); color: #fff; }
+.imp-label { margin: 6px 0 8px; font-weight: 600; font-size: 14px; }
+.imp-stakes { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+.imp-stake { appearance: none; border: 1px solid var(--border); background: var(--surface); color: var(--muted); border-radius: 999px; padding: 3px 9px; font: inherit; font-size: 12px; cursor: pointer; }
+.imp-stake[aria-pressed="true"] { background: var(--primary); border-color: var(--primary); color: #fff; }
+.imp-flags { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.imp-rel { font-size: 12px; color: var(--muted); display: inline-flex; align-items: center; gap: 4px; }
+.imp-rel select { padding: 4px 6px; font-size: 12px; }
+.imp-flag { appearance: none; border: 1px dashed var(--border); background: none; color: var(--muted); border-radius: 999px; padding: 3px 9px; font: inherit; font-size: 12px; cursor: pointer; }
+.imp-flag.on { border-style: solid; border-color: var(--accent); color: var(--primary); background: color-mix(in srgb, var(--accent) 10%, transparent); }
+.forum-card { margin-top: 18px; }
+.forum-bullets { margin: 6px 0 10px; padding-left: 20px; }
+.forum-bullets li { margin: 5px 0; font-size: 14px; }
+.wc-pill { font-size: 12px; font-weight: 700; border-radius: 999px; padding: 3px 10px; }
+.wc-ok { color: var(--st-green-fg); background: var(--st-green-bg); }
+.wc-off { color: var(--st-amber-fg); background: var(--st-amber-bg); }
+
 .dos-modal-bg { position: fixed; inset: 0; background: rgba(6, 18, 34, .45); z-index: 40; }
 .dos-modal { position: fixed; z-index: 41; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(420px, calc(100% - 32px)); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: 0 10px 40px rgba(0,0,0,.25); padding: 20px 22px; }
 .dos-modal h3 { margin: 0 0 4px; color: var(--primary); }

@@ -51,6 +51,27 @@
   ];
   function stakeLabel(t) { for (var i = 0; i < STAKE_TYPES.length; i++) if (STAKE_TYPES[i].id === t) return STAKE_TYPES[i].label; return t || "Other"; }
 
+  // Impact domains for S1 (Impact explorer). Each has a hue for its card accent.
+  var DOMAINS = [
+    { id: "consumption", label: "Consumption & food security", hue: 145 },
+    { id: "education", label: "Education", hue: 210 },
+    { id: "health", label: "Health", hue: 350 },
+    { id: "labour", label: "Labour market", hue: 25 },
+    { id: "local_economy", label: "Local economy", hue: 275 },
+    { id: "gender", label: "Gender & empowerment", hue: 320 },
+    { id: "cohesion", label: "Social cohesion", hue: 190 },
+    { id: "resilience", label: "Resilience to shocks", hue: 95 },
+    { id: "wellbeing", label: "Psychosocial wellbeing", hue: 50 }
+  ];
+  function domain(id) { for (var i = 0; i < DOMAINS.length; i++) if (DOMAINS[i].id === id) return DOMAINS[i]; return null; }
+  function domainLabel(id) { var d = domain(id); return d ? d.label : (id || "Other"); }
+  function domainHue(id) { var d = domain(id); return d ? d.hue : 220; }
+  var RELEVANCE = [
+    { v: 3, label: "Critical", short: "Critical" },
+    { v: 2, label: "Important", short: "Important" },
+    { v: 1, label: "Nice to have", short: "Nice to have" }
+  ];
+
   // Fields driving the S0 forms.
   var PARTICIPANT_FIELDS = [
     { k: "name", label: "Your name", type: "text", ph: "" },
@@ -143,6 +164,7 @@
       distribution: { questions: [], incidence: [], methods: [] },
       qual_design: { outcomes: [], ethics: "" },
       evidence_map: { cells: [] },
+      forum: {},
       priorities: [],
       situation_room: { team: "", first_choice: "", second_choice: "", rationale: "", link_to_own_country: "" },
       final: { slide_outline: [], memo_outline: [], self_assessment: { mastery: 0, analysis: 0, clarity: 0, compliance: 0 }, commitment: "" },
@@ -306,6 +328,7 @@
   function renderStation(id) {
     var s = station(id); if (!s) return renderHome();
     if (id === "S0") return stationHead(s) + renderS0();
+    if (id === "S1") return stationHead(s) + renderS1();
     var stt = rec.progress[id] || "not_started";
     return stationHead(s) +
       '<div class="card dos-soon"><p>' + esc(UI.comingSoon) + "</p>" +
@@ -394,6 +417,170 @@
     });
   }
 
+  /* ---------- Station S1: Impact explorer ---------- */
+  function impact(id) { for (var i = 0; i < rec.impacts.length; i++) if (rec.impacts[i].id === id) return rec.impacts[i]; return null; }
+  function relLabel(v) { for (var i = 0; i < RELEVANCE.length; i++) if (RELEVANCE[i].v === v) return RELEVANCE[i].label; return "Important"; }
+
+  function s1Progress() {
+    if (!rec.impacts.length) return "not_started";
+    var priority = rec.impacts.some(function (i) { return i.relevance === 3 || i.evidence_wanted; });
+    return priority ? "done" : "in_progress";
+  }
+  function s1Pill() {
+    var st = rec.progress.S1;
+    return '<span class="dos-pill p-' + st + '" id="s1-pill">' + esc(st === "done" ? UI.done : st === "in_progress" ? UI.inProgress : UI.notStarted) + "</span>";
+  }
+
+  function impactCard(im) {
+    var stakes = rec.stakeholders.length
+      ? rec.stakeholders.map(function (s) {
+          var on = im.stakeholder_ids.indexOf(s.id) >= 0;
+          return '<button type="button" class="imp-stake" data-imp="' + im.id + '" data-stake="' + s.id + '" aria-pressed="' + on + '">' + esc(s.name || stakeLabel(s.type)) + "</button>";
+        }).join("")
+      : '<span class="muted" style="font-size:12px">Add stakeholders in S0 to tag who cares.</span>';
+    return '<div class="imp-card" data-impact="' + im.id + '" draggable="true" style="--imp-hue:' + domainHue(im.domain) + '">' +
+      '<div class="imp-top"><span class="imp-dot" aria-hidden="true"></span><span class="imp-domain">' + esc(domainLabel(im.domain)) + "</span>" +
+      '<button type="button" class="imp-x" data-imp-remove="' + im.id + '" aria-label="Remove impact">&times;</button></div>' +
+      '<p class="imp-label">' + esc(im.label) + "</p>" +
+      '<div class="imp-stakes">' + stakes + "</div>" +
+      '<div class="imp-flags">' +
+        '<label class="imp-rel">Relevance <select data-imp-rel="' + im.id + '">' +
+          RELEVANCE.map(function (r) { return '<option value="' + r.v + '"' + (im.relevance === r.v ? " selected" : "") + ">" + esc(r.label) + "</option>"; }).join("") + "</select></label>" +
+        '<button type="button" class="imp-flag' + (im.missed_in_video ? " on" : "") + '" data-imp-missed="' + im.id + '" aria-pressed="' + !!im.missed_in_video + '">Missed by the video</button>' +
+        '<button type="button" class="imp-flag' + (im.evidence_wanted ? " on" : "") + '" data-imp-evidence="' + im.id + '" aria-pressed="' + !!im.evidence_wanted + '">Want evidence</button>' +
+      "</div></div>";
+  }
+
+  function s1Grid() {
+    if (!rec.impacts.length) {
+      return '<div class="empty"><p><b>No impacts yet.</b></p><p>Pick a domain, name an impact and add it. Then set how relevant it is and tag which stakeholders care.</p></div>';
+    }
+    return '<div class="rel-grid">' + RELEVANCE.map(function (r) {
+      var cards = rec.impacts.filter(function (i) { return i.relevance === r.v; });
+      return '<div class="rel-col"><h4 class="rel-head rel-' + r.v + '">' + esc(r.label) + ' <span>' + cards.length + "</span></h4>" +
+        '<div class="rel-zone" data-relzone="' + r.v + '" aria-label="' + esc(r.label) + ' impacts. Use each card\'s relevance menu to move it here.">' +
+        (cards.length ? cards.map(impactCard).join("") : '<p class="rel-empty muted">Drag a card here, or set a card\'s relevance to ' + esc(r.label) + ".</p>") +
+        "</div></div>";
+    }).join("") + "</div>";
+  }
+
+  function s1Bullets() {
+    var order = { 3: 0, 2: 1, 1: 2 };
+    var sorted = rec.impacts.slice().sort(function (a, b) { return (order[a.relevance] - order[b.relevance]) || 0; });
+    return sorted.slice(0, 5).map(function (im) {
+      var who = im.stakeholder_ids.map(function (id) { var s = stakeholderById(id); return s ? (s.name || stakeLabel(s.type)) : null; }).filter(Boolean);
+      return domainLabel(im.domain) + " — " + im.label + " (" + relLabel(im.relevance) +
+        (who.length ? "; matters to " + who.join(", ") : "") +
+        (im.missed_in_video ? "; not shown in the video" : "") + ")";
+    });
+  }
+  function stakeholderById(id) { for (var i = 0; i < rec.stakeholders.length; i++) if (rec.stakeholders[i].id === id) return rec.stakeholders[i]; return null; }
+  function s1Question() { return (rec.forum.S1 && rec.forum.S1.question) || "Which of these impacts would you prioritise for evidence in " + (rec.country.name || "your country") + ", and why?"; }
+  function s1PostText() {
+    return "Impact explorer — " + (rec.country.name || "my country") + "\n\n" +
+      s1Bullets().map(function (b) { return "• " + b; }).join("\n") + "\n\n" + s1Question();
+  }
+  function wordCount(t) { var m = String(t).trim().match(/\S+/g); return m ? m.length : 0; }
+
+  function s1Forum() {
+    var bullets = s1Bullets();
+    var wc = wordCount(s1PostText());
+    var band = wc >= 150 && wc <= 300 ? "ok" : "off";
+    return '<div class="dos-card-head"><h3>Forum 1 post</h3><span class="wc-pill wc-' + band + '" id="s1-wordcount">' + wc + " words</span></div>" +
+      '<p class="muted">A ready-to-paste draft built from your impacts. Aim for 150–300 words — expand the bullets and question before posting.</p>' +
+      (bullets.length ? '<ul class="forum-bullets">' + bullets.map(function (b) { return "<li>" + esc(b) + "</li>"; }).join("") + "</ul>" : '<p class="muted">Add impacts to generate the draft.</p>') +
+      '<label class="dos-field" style="font-size:14px">Open question for peers' +
+        '<textarea id="s1-question" rows="2">' + esc(s1Question()) + "</textarea></label>" +
+      '<div class="form-actions"><button type="button" class="btn" data-s1-copy>Copy post</button>' +
+      '<button type="button" class="btn ghost" data-s1-png>Download image (PNG)</button></div>';
+  }
+
+  function renderS1() {
+    var readNote = rec.stakeholders.length
+      ? '<p class="muted">Reading ' + rec.stakeholders.length + ' stakeholder' + (rec.stakeholders.length === 1 ? "" : "s") + ' from S0. Tag each impact with who cares.</p>'
+      : '<p class="muted">Tip: add stakeholders in Station S0 to tag who cares about each impact.</p>';
+    return '<div class="dos-card-head" style="margin-bottom:6px"><span></span>' + s1Pill() + "</div>" + readNote +
+      '<section class="card" id="s1-add"><h3>Add an impact</h3>' +
+        '<div class="s1-add-row"><select id="s1-domain" aria-label="Impact domain">' +
+          DOMAINS.map(function (d) { return '<option value="' + d.id + '">' + esc(d.label) + "</option>"; }).join("") + "</select>" +
+          '<input type="text" id="s1-label" placeholder="Name the impact, e.g. higher school attendance" aria-label="Impact description">' +
+          '<button type="button" class="btn" data-s1-add>Add</button></div></section>' +
+      '<h3 class="dos-h">Priority grid</h3><p class="muted">Each column is a relevance level. Drag a card between columns, or use a card\'s Relevance menu (keyboard-friendly).</p>' +
+      '<div id="s1-grid">' + s1Grid() + "</div>" +
+      '<section class="card forum-card" id="s1-forum">' + s1Forum() + "</section>" +
+      '<p class="muted dos-feeds">What this feeds next: these priority impacts pre-load into the theory-of-change builder (S3) and guide which evidence you seek across the later stations.</p>';
+  }
+
+  function refreshS1() {
+    rec.progress.S1 = s1Progress();
+    var g = document.getElementById("s1-grid"); if (g) g.innerHTML = s1Grid();
+    var f = document.getElementById("s1-forum"); if (f) f.innerHTML = s1Forum();
+    var p = document.getElementById("s1-pill");
+    if (p) { var st = rec.progress.S1; p.className = "dos-pill p-" + st; p.textContent = st === "done" ? UI.done : st === "in_progress" ? UI.inProgress : UI.notStarted; }
+  }
+
+  function s1SvgAndPng() {
+    var pad = 20, colW = 300, headH = 70, rowH = 30, gap = 16;
+    var cols = RELEVANCE.map(function (r) { return { r: r, items: rec.impacts.filter(function (i) { return i.relevance === r.v; }) }; });
+    var maxRows = Math.max.apply(null, cols.map(function (c) { return c.items.length; }).concat([1]));
+    var w = pad * 2 + colW * 3 + gap * 2, h = headH + maxRows * rowH + pad * 2 + 20;
+    function xml(s) { return String(s).replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + " " + h + '" font-family="Arial, sans-serif">';
+    svg += '<rect width="' + w + '" height="' + h + '" fill="#ffffff"/>';
+    svg += '<text x="' + pad + '" y="30" font-size="18" font-weight="700" fill="#00558c">Impact explorer — ' + xml(rec.country.name || "my country") + "</text>";
+    cols.forEach(function (c, ci) {
+      var x = pad + ci * (colW + gap);
+      svg += '<rect x="' + x + '" y="' + (headH - 26) + '" width="' + colW + '" height="26" rx="5" fill="#eef4f9"/>';
+      svg += '<text x="' + (x + 10) + '" y="' + (headH - 8) + '" font-size="13" font-weight="700" fill="#13213b">' + xml(c.r.label) + " (" + c.items.length + ")</text>";
+      c.items.forEach(function (im, ri) {
+        var y = headH + ri * rowH;
+        svg += '<rect x="' + x + '" y="' + (y + 4) + '" width="' + colW + '" height="' + (rowH - 6) + '" rx="5" fill="#f7fafc" stroke="#d9e2ef"/>';
+        svg += '<circle cx="' + (x + 12) + '" cy="' + (y + 4 + (rowH - 6) / 2) + '" r="5" fill="hsl(' + domainHue(im.domain) + ',55%,45%)"/>';
+        var txt = im.label.length > 40 ? im.label.slice(0, 39) + "…" : im.label;
+        svg += '<text x="' + (x + 24) + '" y="' + (y + 4 + (rowH - 6) / 2 + 4) + '" font-size="12" fill="#13213b">' + xml(txt) + "</text>";
+      });
+    });
+    svg += "</svg>";
+    exportPng(svg, "impact-explorer-" + slug(rec.country.name) + ".png", w, h);
+  }
+  function exportPng(svgString, filename, w, h) {
+    try {
+      var img = new Image();
+      var url = URL.createObjectURL(new Blob([svgString], { type: "image/svg+xml;charset=utf-8" }));
+      img.onload = function () {
+        var canvas = document.createElement("canvas"); canvas.width = w; canvas.height = h;
+        var ctx = canvas.getContext("2d"); ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, w, h); ctx.drawImage(img, 0, 0);
+        URL.revokeObjectURL(url);
+        canvas.toBlob(function (b) { if (b) download(filename, b, "image/png"); }, "image/png");
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); alert("Could not render the image in this browser."); };
+      img.src = url;
+    } catch (e) { alert("Image export is not available in this browser."); }
+  }
+
+  function copyText(t, okMsg) {
+    function fallback() {
+      var ta = document.createElement("textarea"); ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); alert(okMsg); } catch (e) { alert("Copy failed — select the text manually."); }
+      ta.remove();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(function () { alert(okMsg); }, fallback);
+    } else fallback();
+  }
+
+  function wireS1() {
+    var add = document.getElementById("s1-label");
+    if (add) add.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); s1AddImpact(); } });
+  }
+  function s1AddImpact() {
+    var d = document.getElementById("s1-domain"), l = document.getElementById("s1-label");
+    if (!l || !l.value.trim()) { if (l) l.focus(); return; }
+    rec.impacts.push({ id: uid("im"), domain: d.value, label: l.value.trim(), stakeholder_ids: [], relevance: 2, evidence_wanted: false, missed_in_video: false });
+    save(); l.value = ""; refreshS1(); l.focus();
+  }
+
   function renderCellEditor() {
     if (!editing) return "";
     var cc = cell(editing.level, editing.method) || { status: "grey", text: "" };
@@ -425,6 +612,7 @@
       '<div class="dos-body">' + (view.screen === "station" ? renderStation(view.station) : renderHome()) + "</div>" +
       renderCellEditor();
     if (view.screen === "station" && view.station === "S0") wireS0();
+    if (view.screen === "station" && view.station === "S1") wireS1();
   }
 
   /* ---------- Events ---------- */
@@ -434,6 +622,21 @@
   MOUNT.addEventListener("click", function (e) {
     var open = e.target.closest("[data-open]");
     if (open) { var id = open.getAttribute("data-open"); id === "home" ? go("home") : go("station", id); return; }
+    if (e.target.closest("[data-s1-add]")) { s1AddImpact(); return; }
+    var impRm = e.target.closest("[data-imp-remove]");
+    if (impRm) { var rid2 = impRm.getAttribute("data-imp-remove"); rec.impacts = rec.impacts.filter(function (i) { return i.id !== rid2; }); save(); refreshS1(); return; }
+    var impMiss = e.target.closest("[data-imp-missed]");
+    if (impMiss) { var m = impact(impMiss.getAttribute("data-imp-missed")); if (m) { m.missed_in_video = !m.missed_in_video; save(); refreshS1(); } return; }
+    var impEv = e.target.closest("[data-imp-evidence]");
+    if (impEv) { var ev = impact(impEv.getAttribute("data-imp-evidence")); if (ev) { ev.evidence_wanted = !ev.evidence_wanted; save(); refreshS1(); } return; }
+    var impSt = e.target.closest(".imp-stake");
+    if (impSt) {
+      var imS = impact(impSt.getAttribute("data-imp")), sid = impSt.getAttribute("data-stake");
+      if (imS) { var p = imS.stakeholder_ids.indexOf(sid); if (p >= 0) imS.stakeholder_ids.splice(p, 1); else imS.stakeholder_ids.push(sid); save(); refreshS1(); }
+      return;
+    }
+    if (e.target.closest("[data-s1-copy]")) { copyText(s1PostText(), "Forum post copied to the clipboard."); return; }
+    if (e.target.closest("[data-s1-png]")) { s1SvgAndPng(); return; }
     var rm = e.target.closest("[data-stake-remove]");
     if (rm) {
       var rid = rm.getAttribute("data-stake-remove");
@@ -469,6 +672,14 @@
   });
 
   MOUNT.addEventListener("input", function (e) {
+    if (e.target.id === "s1-question") {
+      if (!rec.forum.S1) rec.forum.S1 = {};
+      rec.forum.S1.question = e.target.value;
+      save();
+      var wcEl = document.getElementById("s1-wordcount");
+      if (wcEl) { var wc = wordCount(s1PostText()); var band = wc >= 150 && wc <= 300 ? "ok" : "off"; wcEl.className = "wc-pill wc-" + band; wcEl.textContent = wc + " words"; }
+      return;
+    }
     var f = e.target.closest("[data-model]");
     if (!f) return;
     var path = f.getAttribute("data-model");
@@ -477,7 +688,37 @@
     if (view.station === "S0") refreshS0Pill();
   });
 
+  // Drag-and-drop for the S1 relevance grid (keyboard alternative: the card's Relevance menu).
+  var dragImpactId = null;
+  MOUNT.addEventListener("dragstart", function (e) {
+    var c = e.target.closest("[data-impact]");
+    if (!c) return;
+    dragImpactId = c.getAttribute("data-impact");
+    if (e.dataTransfer) { e.dataTransfer.setData("text/plain", dragImpactId); e.dataTransfer.effectAllowed = "move"; }
+    c.classList.add("dragging");
+  });
+  MOUNT.addEventListener("dragend", function (e) {
+    var c = e.target.closest("[data-impact]"); if (c) c.classList.remove("dragging");
+    dragImpactId = null;
+  });
+  MOUNT.addEventListener("dragover", function (e) {
+    var z = e.target.closest("[data-relzone]"); if (!z) return;
+    e.preventDefault(); if (e.dataTransfer) e.dataTransfer.dropEffect = "move"; z.classList.add("drop-hover");
+  });
+  MOUNT.addEventListener("dragleave", function (e) {
+    var z = e.target.closest("[data-relzone]"); if (z) z.classList.remove("drop-hover");
+  });
+  MOUNT.addEventListener("drop", function (e) {
+    var z = e.target.closest("[data-relzone]"); if (!z) return;
+    e.preventDefault(); z.classList.remove("drop-hover");
+    var id = (e.dataTransfer && e.dataTransfer.getData("text/plain")) || dragImpactId;
+    var im = impact(id);
+    if (im) { im.relevance = Number(z.getAttribute("data-relzone")); save(); refreshS1(); }
+  });
+
   MOUNT.addEventListener("change", function (e) {
+    var impRel = e.target.closest("[data-imp-rel]");
+    if (impRel) { var im = impact(impRel.getAttribute("data-imp-rel")); if (im) { im.relevance = Number(impRel.value); save(); refreshS1(); } return; }
     var setS = e.target.closest("[data-set-status]");
     if (setS) { rec.progress[setS.getAttribute("data-set-status")] = setS.value; save(); render(); return; }
     var imp = e.target.closest('[data-act="import"]');

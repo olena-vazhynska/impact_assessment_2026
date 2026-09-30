@@ -26,10 +26,10 @@ window.SAMPLE_RECORDS = {
       { id: "st6", name: "Civil society network", type: "civil_society", interests: "Inclusion and rights" }
     ],
     impacts: [
-      { id: "im1", domain: "Consumption & food security", label: "Reduced food insecurity among poor households", stakeholder_ids: ["st2", "st6"], relevance: 3, evidence_wanted: true, missed_in_video: false },
-      { id: "im2", domain: "Education", label: "Higher school attendance for children in beneficiary households", stakeholder_ids: ["st6"], relevance: 2, evidence_wanted: true, missed_in_video: false },
-      { id: "im3", domain: "Local economy", label: "Local multiplier effects from cash transfers", stakeholder_ids: ["st1", "st5"], relevance: 2, evidence_wanted: false, missed_in_video: true },
-      { id: "im4", domain: "Gender & empowerment", label: "Women's control over household resources", stakeholder_ids: ["st6"], relevance: 2, evidence_wanted: true, missed_in_video: true }
+      { id: "im1", domain: "consumption", label: "Reduced food insecurity among poor households", stakeholder_ids: ["st2", "st6"], relevance: 3, evidence_wanted: true, missed_in_video: false },
+      { id: "im2", domain: "education", label: "Higher school attendance for children in beneficiary households", stakeholder_ids: ["st6"], relevance: 2, evidence_wanted: true, missed_in_video: false },
+      { id: "im3", domain: "local_economy", label: "Local multiplier effects from cash transfers", stakeholder_ids: ["st1", "st5"], relevance: 2, evidence_wanted: false, missed_in_video: true },
+      { id: "im4", domain: "gender", label: "Women's control over household resources", stakeholder_ids: ["st6"], relevance: 2, evidence_wanted: true, missed_in_video: true }
     ],
     // ILO Social Security Inquiry inventory for Amrosea, 2023 (beneficiary counts,
     // full persons). Source: "ILO SSI / Fictif Amrosea" synthetic dataset.
