@@ -40,6 +40,35 @@
   };
   var STATUS_ORDER = ["grey", "red", "amber", "green"];
 
+  var STAKE_TYPES = [
+    { id: "MoF", label: "Ministry of Finance" },
+    { id: "MoL", label: "Ministry of Labour" },
+    { id: "NSO", label: "National Statistics Office" },
+    { id: "social_partner", label: "Social partner" },
+    { id: "donor", label: "Development partner / donor" },
+    { id: "civil_society", label: "Civil society" },
+    { id: "other", label: "Other" }
+  ];
+  function stakeLabel(t) { for (var i = 0; i < STAKE_TYPES.length; i++) if (STAKE_TYPES[i].id === t) return STAKE_TYPES[i].label; return t || "Other"; }
+
+  // Fields driving the S0 forms.
+  var PARTICIPANT_FIELDS = [
+    { k: "name", label: "Your name", type: "text", ph: "" },
+    { k: "organisation", label: "Organisation", type: "text", ph: "" },
+    { k: "role", label: "Role", type: "text", ph: "e.g. Social protection analyst" }
+  ];
+  var COUNTRY_FIELDS = [
+    { k: "name", label: "Country name", type: "text", ph: "e.g. Amrosea", req: true },
+    { k: "region", label: "Region", type: "text", ph: "" },
+    { k: "population", label: "Population", type: "number", ph: "" },
+    { k: "currency", label: "Currency", type: "text", ph: "e.g. AMD" },
+    { k: "poverty_line", label: "National poverty line (per month)", type: "number", ph: "" },
+    { k: "poverty_rate", label: "Poverty rate (%)", type: "number", ph: "" },
+    { k: "gdp", label: "GDP", type: "text", ph: "e.g. 62bn AMD" },
+    { k: "avg_wage", label: "Average wage (per month)", type: "number", ph: "" },
+    { k: "data_year", label: "Data year", type: "number", ph: "e.g. 2024" }
+  ];
+
   // Station metadata drives navigation, progress and the "what this feeds" notes.
   // writes[] names the record keys a station owns; col is the Evidence Map column it fills.
   var STATIONS = [
@@ -90,6 +119,12 @@
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
   }
   function slug(s) { return String(s || "dossier").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") || "dossier"; }
+  function getPath(obj, path) { return path.split(".").reduce(function (o, k) { return o == null ? o : o[k]; }, obj); }
+  function setPath(obj, path, val) {
+    var keys = path.split("."), o = obj;
+    for (var i = 0; i < keys.length - 1; i++) { if (o[keys[i]] == null) o[keys[i]] = {}; o = o[keys[i]]; }
+    o[keys[keys.length - 1]] = val;
+  }
 
   /* ---------- Data model ---------- */
   function blank() {
@@ -256,9 +291,7 @@
     return html;
   }
 
-  function renderStation(id) {
-    var s = station(id); if (!s) return renderHome();
-    var stt = rec.progress[id] || "not_started";
+  function stationHead(s) {
     var readNames = s.reads.length ? s.reads.join(", ") : "—";
     var writeNames = s.writes.length ? s.writes.join(", ") : "—";
     var colNote = s.col ? "Fills the <b>" + esc((METHODS.filter(function (m) { return m.id === s.col; })[0] || {}).label || s.col) + "</b> column of the Evidence Map." : "Does not write directly to the Evidence Map.";
@@ -267,12 +300,98 @@
       "<h2>" + esc(s.title) + "</h2><p class=\"dos-q\">" + esc(s.q) + "</p></div>" +
       '<div class="dos-io card"><div><span class="eyebrow">' + UI.reads + "</span><p>" + esc(readNames) + "</p></div>" +
       '<div><span class="eyebrow">' + UI.writes + "</span><p>" + esc(writeNames) + "</p></div>" +
-      '<div><span class="eyebrow">' + UI.feedsNext + '</span><p>' + colNote + "</p></div></div>" +
+      '<div><span class="eyebrow">' + UI.feedsNext + '</span><p>' + colNote + "</p></div></div>";
+  }
+
+  function renderStation(id) {
+    var s = station(id); if (!s) return renderHome();
+    if (id === "S0") return stationHead(s) + renderS0();
+    var stt = rec.progress[id] || "not_started";
+    return stationHead(s) +
       '<div class="card dos-soon"><p>' + esc(UI.comingSoon) + "</p>" +
       '<label class="dos-status-set">' + UI.status + ": <select data-set-status=\"" + esc(id) + "\">" +
         ["not_started", "in_progress", "done"].map(function (v) {
           return '<option value="' + v + '"' + (stt === v ? " selected" : "") + ">" + esc(UI[v === "not_started" ? "notStarted" : v === "in_progress" ? "inProgress" : "done"]) + "</option>";
         }).join("") + "</select></label></div>";
+  }
+
+  /* ---------- Station S0: Country passport ---------- */
+  function field(group, f) {
+    var v = getPath(rec, group + "." + f.k);
+    if (v == null) v = "";
+    return '<label class="dos-field">' + esc(f.label) + (f.req ? ' <span class="dos-req">*</span>' : "") +
+      '<input type="' + f.type + '" data-model="' + group + "." + f.k + '"' + (f.type === "number" ? ' inputmode="decimal"' : "") +
+      (f.ph ? ' placeholder="' + esc(f.ph) + '"' : "") + ' value="' + esc(v) + '"></label>';
+  }
+  function stakeChip(s) {
+    var typeTxt = stakeLabel(s.type);
+    var showType = typeTxt && typeTxt.toLowerCase() !== String(s.name || "").toLowerCase();
+    return '<span class="dos-chip"><b>' + esc(s.name || "(unnamed)") + "</b>" +
+      (showType ? "<span>" + esc(typeTxt) + "</span>" : "") +
+      (s.interests ? '<em>' + esc(s.interests) + "</em>" : "") +
+      '<button type="button" class="dos-chip-x" data-stake-remove="' + esc(s.id) + '" aria-label="Remove ' + esc(s.name || "stakeholder") + '">&times;</button></span>';
+  }
+  function renderStakeChips() {
+    return rec.stakeholders.length
+      ? rec.stakeholders.map(stakeChip).join("")
+      : '<p class="muted" style="margin:0">No stakeholders yet. Add the actors who care about impact evidence in your country.</p>';
+  }
+  function s0Progress() {
+    var c = rec.country, p = rec.participant;
+    var filled = [c.name, c.region, c.population, c.currency, c.poverty_rate, c.data_year, p.name].filter(function (x) { return x != null && x !== ""; }).length;
+    if (c.name && p.name) return "done";
+    if (filled > 0) return "in_progress";
+    return "not_started";
+  }
+  function s0PillHtml() {
+    var st = rec.progress.S0;
+    var label = st === "done" ? UI.done : st === "in_progress" ? UI.inProgress : UI.notStarted;
+    return '<span class="dos-pill p-' + st + '" id="s0-pill">' + esc(label) + "</span>";
+  }
+  function renderS0() {
+    return '<div class="dos-s0">' +
+      '<section class="card"><div class="dos-card-head"><h3>Your details</h3>' + s0PillHtml() + "</div>" +
+        '<div class="dos-grid">' + PARTICIPANT_FIELDS.map(function (f) { return field("participant", f); }).join("") + "</div></section>" +
+      '<section class="card"><h3>Country passport</h3>' +
+        '<p class="muted">Enter the figures once here. Every later station reads them from this record — you never type them again.</p>' +
+        '<div class="dos-grid">' + COUNTRY_FIELDS.map(function (f) { return field("country", f); }).join("") + "</div></section>" +
+      '<section class="card"><h3>Stakeholders</h3>' +
+        '<p class="muted">Who cares about the impact of social protection here? These chips feed Station S1 (Impact explorer).</p>' +
+        '<div class="dos-chips" id="dos-stake-chips">' + renderStakeChips() + "</div>" +
+        '<div class="dos-stake-add">' +
+          '<input type="text" id="stake-name" placeholder="Name, e.g. Ministry of Finance" aria-label="Stakeholder name">' +
+          '<select id="stake-type" aria-label="Stakeholder type">' + STAKE_TYPES.map(function (t) { return '<option value="' + t.id + '">' + esc(t.label) + "</option>"; }).join("") + "</select>" +
+          '<input type="text" id="stake-interests" placeholder="Their interest (optional)" aria-label="Stakeholder interest">' +
+          '<button type="button" class="btn" id="stake-add">Add</button>' +
+        "</div>" +
+        '<div class="dos-quick"><span class="muted">Quick add:</span>' + STAKE_TYPES.map(function (t) {
+          return '<button type="button" class="dos-quick-btn" data-stake-quick="' + t.id + '">+ ' + esc(t.label) + "</button>";
+        }).join("") + "</div></section>" +
+      '<p class="muted dos-feeds">What this feeds next: the country figures power the indicator and microsimulation stations; the stakeholders appear in the Impact explorer (S1).</p>' +
+      "</div>";
+  }
+  function coerceNum(v) { if (v === "" || v == null) return null; var n = Number(v); return isNaN(n) ? v : n; }
+  function refreshS0Pill() {
+    rec.progress.S0 = s0Progress();
+    var pill = document.getElementById("s0-pill");
+    if (pill) { var st = rec.progress.S0; pill.className = "dos-pill p-" + st; pill.textContent = st === "done" ? UI.done : st === "in_progress" ? UI.inProgress : UI.notStarted; }
+  }
+  function addStakeholder(type, name, interests) {
+    rec.stakeholders.push({ id: uid("st"), name: (name || "").trim(), type: type || "other", interests: (interests || "").trim() });
+    save();
+    var box = document.getElementById("dos-stake-chips");
+    if (box) box.innerHTML = renderStakeChips();
+  }
+  function wireS0() {
+    var addBtn = document.getElementById("stake-add");
+    if (addBtn) addBtn.addEventListener("click", function () {
+      var nm = document.getElementById("stake-name");
+      var ty = document.getElementById("stake-type");
+      var it = document.getElementById("stake-interests");
+      if (!nm.value.trim()) { nm.focus(); return; }
+      addStakeholder(ty.value, nm.value, it.value);
+      nm.value = ""; it.value = ""; nm.focus();
+    });
   }
 
   function renderCellEditor() {
@@ -305,6 +424,7 @@
     MOUNT.innerHTML = toolbar() +
       '<div class="dos-body">' + (view.screen === "station" ? renderStation(view.station) : renderHome()) + "</div>" +
       renderCellEditor();
+    if (view.screen === "station" && view.station === "S0") wireS0();
   }
 
   /* ---------- Events ---------- */
@@ -314,6 +434,23 @@
   MOUNT.addEventListener("click", function (e) {
     var open = e.target.closest("[data-open]");
     if (open) { var id = open.getAttribute("data-open"); id === "home" ? go("home") : go("station", id); return; }
+    var rm = e.target.closest("[data-stake-remove]");
+    if (rm) {
+      var rid = rm.getAttribute("data-stake-remove");
+      rec.stakeholders = rec.stakeholders.filter(function (s) { return s.id !== rid; });
+      save();
+      var box = document.getElementById("dos-stake-chips");
+      if (box) box.innerHTML = renderStakeChips();
+      return;
+    }
+    var qk = e.target.closest("[data-stake-quick]");
+    if (qk) {
+      var sel = document.getElementById("stake-type");
+      if (sel) sel.value = qk.getAttribute("data-stake-quick");
+      var nm = document.getElementById("stake-name");
+      if (nm) nm.focus();
+      return;
+    }
     var cellBtn = e.target.closest("[data-cell]");
     if (cellBtn) { var parts = cellBtn.getAttribute("data-cell").split("|"); editing = { level: parts[0], method: parts[1] }; render(); return; }
     if (e.target.closest("[data-cell-cancel]")) { editing = null; render(); return; }
@@ -329,6 +466,15 @@
       else if (a === "new") { if (confirm(UI.confirmNew)) { rec = blank(); save(); go("home"); } }
       else if (a === "export") { download("evidence-dossier-" + slug(rec.country.name || rec.participant.name) + ".json", JSON.stringify(rec, null, 2)); }
     }
+  });
+
+  MOUNT.addEventListener("input", function (e) {
+    var f = e.target.closest("[data-model]");
+    if (!f) return;
+    var path = f.getAttribute("data-model");
+    setPath(rec, path, f.getAttribute("type") === "number" ? coerceNum(f.value) : f.value);
+    save();
+    if (view.station === "S0") refreshS0Pill();
   });
 
   MOUNT.addEventListener("change", function (e) {

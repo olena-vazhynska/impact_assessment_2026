@@ -351,6 +351,30 @@ address { font-style: normal; }
 .dos-soon p { margin: 0 0 12px; }
 .dos-status-set select { margin-left: 6px; }
 
+/* Station S0 */
+.dos-s0 { display: grid; gap: 16px; }
+.dos-s0 section h3 { margin: 0 0 4px; color: var(--primary); }
+.dos-card-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.dos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 12px 16px; margin-top: 12px; }
+.dos-field { display: flex; flex-direction: column; font-weight: 600; font-size: 13px; gap: 5px; }
+.dos-field input { font: 400 15px "Noto Sans", sans-serif; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); }
+.dos-field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.dos-req { color: var(--live); }
+.dos-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.dos-chip { display: inline-flex; align-items: center; gap: 6px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; padding: 6px 6px 6px 12px; font-size: 13px; }
+.dos-chip b { font-weight: 700; }
+.dos-chip span { color: var(--muted); }
+.dos-chip em { font-style: normal; color: var(--muted); border-left: 1px solid var(--border); padding-left: 6px; }
+.dos-chip-x { appearance: none; border: 0; background: var(--border); color: var(--text); width: 20px; height: 20px; border-radius: 50%; cursor: pointer; font-size: 15px; line-height: 1; display: grid; place-items: center; }
+.dos-chip-x:hover { background: var(--live); color: #fff; }
+.dos-stake-add { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.dos-stake-add input { flex: 1 1 180px; font: inherit; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); min-width: 0; }
+.dos-stake-add select { flex: 0 1 auto; }
+.dos-quick { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 10px; font-size: 13px; }
+.dos-quick-btn { appearance: none; border: 1px dashed var(--border); background: none; color: var(--primary); border-radius: 999px; padding: 4px 10px; font: inherit; font-size: 12px; cursor: pointer; }
+.dos-quick-btn:hover { border-color: var(--accent); border-style: solid; }
+.dos-feeds { border-top: 1px solid var(--border); padding-top: 12px; }
+
 .dos-modal-bg { position: fixed; inset: 0; background: rgba(6, 18, 34, .45); z-index: 40; }
 .dos-modal { position: fixed; z-index: 41; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(420px, calc(100% - 32px)); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: 0 10px 40px rgba(0,0,0,.25); padding: 20px 22px; }
 .dos-modal h3 { margin: 0 0 4px; color: var(--primary); }
