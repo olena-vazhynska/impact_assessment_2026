@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Impact Assessment 2026</title>
+  <meta name="description" content="Course dashboard — Impact Assessment for Social Protection Analysts (ITCILO A9718853), 5 October – 20 November 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@400;600;700&family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="pills"><span class="pill solid">Online</span><span class="pill">Social Protection</span><span class="pill">Course A9718853</span></div>
+      <h1>Impact Assessment<br>for Social Protection Analysts</h1>
+      <p class="hero-sub">5 October – 20 November 2026 · 7 weeks · 100 hours · ITCILO eCampus</p>
+      <div class="kpis" id="kpis"></div>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Dashboard sections">
+    <div class="wrap tabs-inner">
+      <button role="tab" data-tab="overview" aria-selected="true">Overview</button>
+      <button role="tab" data-tab="timetable">Timetable</button>
+      <button role="tab" data-tab="speakers">Resource persons</button>
+      <button role="tab" data-tab="participants">Participants</button>
+      <button role="tab" data-tab="info">Course info</button>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <!-- OVERVIEW -->
+    <section id="panel-overview" data-panel="overview" class="panel" role="tabpanel">
+      <div class="next-card" id="next-card"></div>
+
+      <div class="grid-2">
+        <article class="card">
+          <h2>Snapshot of the course</h2>
+          <p id="overview-text"></p>
+        </article>
+        <article class="card">
+          <h2>Course progress</h2>
+          <div id="progress"></div>
+        </article>
+      </div>
+
+      <h2 class="section-title">Seven-week journey</h2>
+      <div class="journey" id="journey"></div>
+
+      <div class="grid-2">
+        <article class="card">
+          <h2>What topics does this course cover?</h2>
+          <ul class="ticks" id="topics"></ul>
+        </article>
+        <article class="card">
+          <h2>What will I be able to do?</h2>
+          <ol class="numbered" id="outcomes"></ol>
+        </article>
+      </div>
+    </section>
+
+    <!-- TIMETABLE -->
+    <section id="panel-timetable" data-panel="timetable" class="panel" role="tabpanel" hidden>
+      <div class="toolbar">
+        <div>
+          <h2 class="section-title flush">Live sessions</h2>
+          <p class="muted">Tuesdays and Thursdays, 14:00–15:30 CEST/CET (UTC+2 in weeks 1–4, UTC+1 in weeks 5–7, as in the agenda); session 6a runs until 16:00.</p>
+        </div>
+        <div class="toolbar-actions">
+          <label class="switch"><input type="checkbox" id="tz-toggle"> <span>Show my local time</span></label>
+          <button class="btn" id="ics-all">Add all to calendar (.ics)</button>
+        </div>
+      </div>
+      <div id="weeks"></div>
+    </section>
+
+    <!-- SPEAKERS -->
+    <section id="panel-speakers" data-panel="speakers" class="panel" role="tabpanel" hidden>
+      <h2 class="section-title">Resource persons</h2>
+      <p class="muted">Trainers and experts leading the live sessions.</p>
+      <div class="people-grid" id="people"></div>
+    </section>
+
+    <!-- PARTICIPANTS -->
+    <section id="panel-participants" data-panel="participants" class="panel" role="tabpanel" hidden>
+      <h2 class="section-title">Participants</h2>
+      <div id="participants-body"></div>
+    </section>
+
+    <!-- INFO -->
+    <section id="panel-info" data-panel="info" class="panel" role="tabpanel" hidden>
+      <div class="grid-2">
+        <article class="card">
+          <h2>Who takes this course?</h2>
+          <p id="audience"></p>
+        </article>
+        <article class="card">
+          <h2>How it works</h2>
+          <div class="phases" id="phases"></div>
+        </article>
+      </div>
+      <h2 class="section-title">Why join?</h2>
+      <div class="why-grid" id="why"></div>
+      <div class="grid-2">
+        <article class="card" id="facts"></article>
+        <article class="card" id="contact"></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">© International Training Centre of the ILO, 2026 · Programme on Social Protection, Governance and Tripartism (SPGT)</div>
+  </footer>
+
+  <script src="data/course.js"></script>
+  <script src="data/participants.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
