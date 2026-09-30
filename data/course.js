@@ -104,6 +104,13 @@ window.COURSE = {
     ]
   },
 
+  // How the flagship coverage indicator is sourced (SDG 1.3.1 metadata, 2025-03-28).
+  sdg131: {
+    title: "The flagship indicator: SDG 1.3.1",
+    body: "SDG 1.3.1 — the proportion of the population covered by social protection floors and systems — is monitored by the ILO as custodian agency. Its primary data source is the ILO Social Security Inquiry (SSI); results are compiled in the World Social Protection Database, drawing secondary data from the World Bank, UNICEF, UN Women, HelpAge, the OECD and the ISSA. Coverage is reported by function: children, maternity, disability, old-age pensions, unemployment, employment injury, and the poor and vulnerable.",
+    note: "Source: SDG indicator 1.3.1 metadata (custodian: ILO), last updated 2025-03-28. Related indicators: 3.8.1 and 3.8.2 (universal health coverage) and 1.a.2."
+  },
+
   // Indicators worth pulling into an impact-assessment dashboard.
   indicators: [
     "SDG 1.3.1 — social protection coverage by function",
@@ -124,12 +131,15 @@ window.COURSE = {
   resourceGroups: [
     { title: "Coverage, spending & adequacy", weeks: "Weeks 1–2", items: [
       ["ILO World Social Protection Database (WSPDB)", "SDG 1.3.1 coverage by function, spending as % of GDP and benefit adequacy.", "https://www.social-protection.org/gimi/WSPDB.action?id=32", true],
+      ["ILO Social Security Inquiry (SSI)", "The ILO questionnaire that is the primary source of administrative data behind SDG 1.3.1.", "https://qpss.ilo.org/", false],
+      ["World Social Protection Data Dashboards", "Interactive SDG 1.3.1 coverage by function, drawn from the WSPDB.", "https://wspdb.social-protection.org", true],
       ["ILOSTAT", "Labour force, informality, working poverty, wages and NEET rates.", "https://ilostat.ilo.org/data/", true],
       ["World Bank ASPIRE", "Coverage, benefit incidence and adequacy by quintile; poverty and Gini reduction from transfers.", "https://www.worldbank.org/en/data/datatopics/aspire", true],
       ["OECD SOCX & Pensions at a Glance", "Social expenditure by branch and comparative pension indicators.", "https://www.oecd.org/en/data/datasets/social-expenditure-database-socx.html", true],
       ["Eurostat ESSPROS & EU-SILC", "At-risk-of-poverty rate before and after social transfers (Europe).", "https://ec.europa.eu/eurostat/web/social-protection/database", true],
       ["IMF Government Finance Statistics (COFOG)", "Public spending on social protection by function.", "https://data.imf.org/", true],
-      ["SSA/ISSA — Social Security Programs Throughout the World", "Legal scheme design, eligibility and contribution rates.", "https://www.ssa.gov/policy/docs/progdesc/ssptw/", false],
+      ["SSA/ISSA — Social Security Programs Throughout the World", "Legal scheme design, eligibility and contribution rates; a WSPDB secondary source (ISSA).", "https://www.ssa.gov/policy/docs/progdesc/ssptw/", false],
+      ["HelpAge — Social Pensions Database", "Non-contributory (social) pensions worldwide; a WSPDB secondary source.", "https://www.pension-watch.net/", false],
       ["socialprotection.org", "Programme profiles, country pages and publications.", "https://www.socialprotection.org/", false]
     ] },
     { title: "Poverty, inequality & fiscal incidence", weeks: "Weeks 1 & 4", items: [
@@ -169,6 +179,7 @@ window.COURSE = {
       ["UN DESA World Population Prospects", "Age structure, dependency ratios and population projections.", "https://population.un.org/wpp/", true],
       ["UNICEF Data Warehouse", "Child poverty and SDG child indicators.", "https://data.unicef.org/", true],
       ["World Bank Gender Data Portal", "Gender indicators and Women, Business and the Law provisions.", "https://genderdata.worldbank.org/", false],
+      ["UN Women Data Hub (Women Count)", "Gender statistics, including women's access to social protection; a WSPDB secondary source.", "https://data.unwomen.org/", false],
       ["WHO Global Health Observatory", "UHC service coverage and out-of-pocket health spending.", "https://www.who.int/data/gho", true],
       ["UN SDG Global Database", "SDG indicators including 1.3.1, 5.4.1 and 10.4.1.", "https://unstats.un.org/sdgs/dataportal", true],
       ["Washington Group on Disability Statistics", "Disability measurement tools and survey resources.", "https://www.washingtongroup-disability.com/", false]

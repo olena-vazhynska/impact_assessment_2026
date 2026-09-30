@@ -211,6 +211,8 @@ select, .filters input { font: inherit; padding: 8px 12px; border: 1px solid var
 .checklist li { margin: 8px 0; }
 
 /* Resources */
+.sdg-card { margin-top: 16px; border-left: 4px solid var(--accent); }
+.sdg-card p { margin: 0 0 0; }
 .indicators-card { margin-top: 16px; }
 .indicators-card h2 { margin-bottom: 4px; }
 .chips-list { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }

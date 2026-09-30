@@ -297,7 +297,13 @@
     var apiItems = C.resourceGroups.reduce(function (a, g) {
       return a + g.items.filter(function (it) { return it[3]; }).length;
     }, 0);
-    var html = '<div class="card indicators-card"><h2>Suggested indicators to pull</h2>' +
+    var html = "";
+    if (C.sdg131) {
+      html += '<div class="card sdg-card"><h2>' + esc(C.sdg131.title) + "</h2>" +
+        "<p>" + esc(C.sdg131.body) + "</p>" +
+        '<p class="muted" style="margin:.5rem 0 0">' + esc(C.sdg131.note) + "</p></div>";
+    }
+    html += '<div class="card indicators-card"><h2>Suggested indicators to pull</h2>' +
       '<p class="muted">A starting set for a social protection impact dashboard.</p>' +
       '<ul class="chips-list">' + C.indicators.map(function (i) { return '<li>' + esc(i) + "</li>"; }).join("") + "</ul>" +
       '<p class="muted" style="margin:.75rem 0 0">' + totalItems + " open-data sources across " + C.resourceGroups.length +
