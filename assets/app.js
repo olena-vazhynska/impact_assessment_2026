@@ -337,10 +337,25 @@
 
   /* ---------- Resources & course info ---------- */
   function renderResources() {
-    $("#resources").innerHTML = C.resources.map(function (r) {
-      return '<a class="card resource" href="' + esc(r[3]) + '" target="_blank" rel="noopener">' +
-        "<small>" + esc(r[0]) + "</small><h3>" + esc(r[1]) + " ↗</h3><p>" + esc(r[2]) + "</p></a>";
+    var totalItems = C.resourceGroups.reduce(function (a, g) { return a + g.items.length; }, 0);
+    var apiItems = C.resourceGroups.reduce(function (a, g) {
+      return a + g.items.filter(function (it) { return it[3]; }).length;
+    }, 0);
+    var html = '<div class="card indicators-card"><h2>Suggested indicators to pull</h2>' +
+      '<p class="muted">A starting set for a social protection impact dashboard.</p>' +
+      '<ul class="chips-list">' + C.indicators.map(function (i) { return '<li>' + esc(i) + "</li>"; }).join("") + "</ul>" +
+      '<p class="muted" style="margin:.75rem 0 0">' + totalItems + " open-data sources across " + C.resourceGroups.length +
+      " themes · <span class=\"api-tag\">API</span> marks a source you can query by machine (" + apiItems + " of " + totalItems + ").</p></div>";
+    html += C.resourceGroups.map(function (g) {
+      return '<section class="resource-group"><div class="group-head"><h3>' + esc(g.title) +
+        '</h3><span class="group-weeks">' + esc(g.weeks) + "</span></div>" +
+        '<div class="cards-3">' + g.items.map(function (r) {
+          return '<a class="card resource" href="' + esc(r[2]) + '" target="_blank" rel="noopener">' +
+            (r[3] ? '<span class="api-tag">API</span>' : "") +
+            "<h4>" + esc(r[0]) + " ↗</h4><p>" + esc(r[1]) + "</p></a>";
+        }).join("") + "</div></section>";
     }).join("");
+    $("#resources").innerHTML = html;
 
     $("#audience").textContent = C.audience;
     var d = function (iso) { return fmt(new Date(iso + "T12:00:00Z"), { day: "numeric", month: "long", year: "numeric" }, "UTC"); };

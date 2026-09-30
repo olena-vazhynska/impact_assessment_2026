@@ -211,11 +211,20 @@ select, .filters input { font: inherit; padding: 8px 12px; border: 1px solid var
 .checklist li { margin: 8px 0; }
 
 /* Resources */
-.resource { display: block; text-decoration: none; color: inherit; transition: transform .15s ease, border-color .15s ease; }
+.indicators-card { margin-top: 16px; }
+.indicators-card h2 { margin-bottom: 4px; }
+.chips-list { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.chips-list li { font-size: 13px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; padding: 5px 12px; }
+.resource-group { margin-top: 26px; }
+.group-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin-bottom: 4px; padding-bottom: 8px; border-bottom: 2px solid var(--border); }
+.group-head h3 { margin: 0; font-size: 19px; color: var(--primary); }
+.group-weeks { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); }
+.resource { position: relative; display: block; text-decoration: none; color: inherit; transition: transform .15s ease, border-color .15s ease; }
 .resource:hover { transform: translateY(-2px); border-color: var(--accent); }
-.resource small { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); font-weight: 700; }
-.resource h3 { margin: 6px 0; font-size: 18px; color: var(--primary); }
+.resource h4 { margin: 0 0 6px; font-size: 16px; color: var(--primary); padding-right: 42px; line-height: 1.25; }
 .resource p { margin: 0; color: var(--muted); font-size: 14px; }
+.api-tag { position: absolute; top: 14px; right: 14px; font: 700 10px/1 "Noto Sans", sans-serif; text-transform: uppercase; letter-spacing: .06em; color: #fff; background: var(--accent); border-radius: 4px; padding: 3px 6px; }
+.chips-list + p .api-tag, p .api-tag { position: static; display: inline-block; vertical-align: baseline; }
 
 /* Participants / demographics */
 .empty { text-align: center; padding: 40px 20px; border: 2px dashed var(--border); border-radius: var(--radius); color: var(--muted); background: var(--surface); }

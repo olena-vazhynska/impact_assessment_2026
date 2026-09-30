@@ -104,14 +104,99 @@ window.COURSE = {
     ]
   },
 
-  // Further reading for the applied exercise.
-  resources: [
-    ["Labour and social protection", "ILOSTAT", "Indicators and methodological resources from the ILO.", "https://ilostat.ilo.org/data/"],
-    ["Social protection", "ILO World Social Protection Database", "Country and scheme information for comparative context.", "https://www.social-protection.org/gimi/WSPDB.action?id=32"],
-    ["Development indicators", "World Bank Open Data", "Contextual demographic and economic series.", "https://data.worldbank.org/"],
-    ["Household surveys", "UNICEF MICS", "Survey data and tools relevant to child and household outcomes.", "https://mics.unicef.org/"],
-    ["Household surveys", "Living Standards Measurement Study", "Survey programmes and documentation for welfare analysis.", "https://www.worldbank.org/en/programs/lsms"],
-    ["Course information", "ITCILO course page", "Official course information and updates.", "https://www.itcilo.org/courses/impact-assessment-social-protection-analysts"]
+  // Indicators worth pulling into an impact-assessment dashboard.
+  indicators: [
+    "SDG 1.3.1 — social protection coverage by function",
+    "Social protection spending (% of GDP)",
+    "Benefit adequacy (transfer value vs. consumption)",
+    "Poverty headcount and Gini before vs. after transfers",
+    "Informality rate",
+    "Old-age dependency ratio",
+    "Child poverty rate",
+    "Adults receiving government transfers into an account",
+    "Fiscal space indicators",
+    "Count of impact evaluations by country (3ie)"
+  ],
+
+  // Open-data sources for the applied exercise, grouped by theme and matched to
+  // the course weeks. Each item is [title, description, url, hasApi].
+  // Check the scope, definitions, coverage and update date of every source.
+  resourceGroups: [
+    { title: "Coverage, spending & adequacy", weeks: "Weeks 1–2", items: [
+      ["ILO World Social Protection Database (WSPDB)", "SDG 1.3.1 coverage by function, spending as % of GDP and benefit adequacy.", "https://www.social-protection.org/gimi/WSPDB.action?id=32", true],
+      ["ILOSTAT", "Labour force, informality, working poverty, wages and NEET rates.", "https://ilostat.ilo.org/data/", true],
+      ["World Bank ASPIRE", "Coverage, benefit incidence and adequacy by quintile; poverty and Gini reduction from transfers.", "https://www.worldbank.org/en/data/datatopics/aspire", true],
+      ["OECD SOCX & Pensions at a Glance", "Social expenditure by branch and comparative pension indicators.", "https://www.oecd.org/en/data/datasets/social-expenditure-database-socx.html", true],
+      ["Eurostat ESSPROS & EU-SILC", "At-risk-of-poverty rate before and after social transfers (Europe).", "https://ec.europa.eu/eurostat/web/social-protection/database", true],
+      ["IMF Government Finance Statistics (COFOG)", "Public spending on social protection by function.", "https://data.imf.org/", true],
+      ["SSA/ISSA — Social Security Programs Throughout the World", "Legal scheme design, eligibility and contribution rates.", "https://www.ssa.gov/policy/docs/progdesc/ssptw/", false],
+      ["socialprotection.org", "Programme profiles, country pages and publications.", "https://www.socialprotection.org/", false]
+    ] },
+    { title: "Poverty, inequality & fiscal incidence", weeks: "Weeks 1 & 4", items: [
+      ["World Bank Poverty and Inequality Platform (PIP)", "Poverty headcounts at international lines, Gini and shared prosperity.", "https://pip.worldbank.org/", true],
+      ["World Development Indicators (WDI)", "Macro, demographic and social indicators.", "https://databank.worldbank.org/source/world-development-indicators", true],
+      ["World Inequality Database (WID)", "Pre- vs. post-tax income and top income and wealth shares.", "https://wid.world/", true],
+      ["SWIID", "Market vs. disposable-income Gini — the redistributive effect.", "https://fsolt.org/swiid/", false],
+      ["CEQ Institute Data Center", "Fiscal incidence of taxes, transfers and contributions on poverty and inequality.", "https://commitmentoequity.org/datacenter", false],
+      ["UNU-WIDER WIID & Government Revenue Dataset", "Income inequality, and tax and social security contribution revenue.", "https://www.wider.unu.edu/database/world-income-inequality-database-wiid", false],
+      ["LIS Cross-National Data Center", "Harmonised income microdata; key figures open, microdata on registration.", "https://www.lisdatacenter.org/", false],
+      ["UNDP HDR & Global MPI", "HDI, IHDI, GII and the global Multidimensional Poverty Index.", "https://hdr.undp.org/data-center", true]
+    ] },
+    { title: "Microdata & microsimulation", weeks: "Week 3", items: [
+      ["World Bank Microdata Library & LSMS", "Household and living-standards survey microdata.", "https://microdata.worldbank.org/", false],
+      ["IPUMS International", "Harmonised census microdata (free, registration required).", "https://international.ipums.org/", false],
+      ["DHS Program", "Demographic and Health Surveys indicators and microdata.", "https://dhsprogram.com/", true],
+      ["UNICEF MICS", "Multiple Indicator Cluster Surveys — child and household microdata.", "https://mics.unicef.org/", false],
+      ["UNU-WIDER SOUTHMOD", "Tax-benefit microsimulation models for Africa, Asia and Latin America.", "https://www.wider.unu.edu/project/southmod-simulating-tax-and-benefit-policies-development", false],
+      ["EUROMOD (JRC)", "EU tax-benefit microsimulation model and statistics.", "https://euromod-web.jrc.ec.europa.eu/", false],
+      ["Global Findex", "Adults receiving government transfers into an account and digital-payment use.", "https://www.worldbank.org/en/publication/globalfindex", true]
+    ] },
+    { title: "Impact evaluation evidence", weeks: "Weeks 2 & 4", items: [
+      ["3ie Development Evidence Portal", "Impact evaluations and systematic reviews, filterable by social protection.", "https://developmentevidence.3ieimpact.org/", false],
+      ["J-PAL Evaluations", "Randomized evaluation database and policy insights.", "https://www.povertyactionlab.org/evaluations", false],
+      ["AEA RCT Registry", "Registered trials, with designs and outcomes.", "https://www.socialscienceregistry.org/", false],
+      ["The Transfer Project", "Evaluations of cash transfers in sub-Saharan Africa.", "https://transfer.cpc.unc.edu/", false],
+      ["Campbell Collaboration", "Library of systematic reviews.", "https://www.campbellcollaboration.org/", false],
+      ["World Bank DIME & IE catalogue", "Impact-evaluation replication datasets.", "https://microdata.worldbank.org/index.php/catalog/impact_evaluation", false]
+    ] },
+    { title: "Perceptions & qualitative context", weeks: "Week 5", items: [
+      ["Afrobarometer", "Trust in government, perceived fairness and access to services (Africa).", "https://www.afrobarometer.org/", false],
+      ["Latinobarómetro", "Public attitudes and trust (Latin America).", "https://www.latinobarometro.org/", false],
+      ["World Values Survey", "Attitudes towards redistribution and welfare.", "https://www.worldvaluessurvey.org/", false],
+      ["ISSP — Role of Government", "Cross-national attitudes towards the role of government.", "https://issp.org/", false]
+    ] },
+    { title: "Demography, gender, children, disability & health", weeks: "Cross-cutting", items: [
+      ["UN DESA World Population Prospects", "Age structure, dependency ratios and population projections.", "https://population.un.org/wpp/", true],
+      ["UNICEF Data Warehouse", "Child poverty and SDG child indicators.", "https://data.unicef.org/", true],
+      ["World Bank Gender Data Portal", "Gender indicators and Women, Business and the Law provisions.", "https://genderdata.worldbank.org/", false],
+      ["WHO Global Health Observatory", "UHC service coverage and out-of-pocket health spending.", "https://www.who.int/data/gho", true],
+      ["UN SDG Global Database", "SDG indicators including 1.3.1, 5.4.1 and 10.4.1.", "https://unstats.un.org/sdgs/dataportal", true],
+      ["Washington Group on Disability Statistics", "Disability measurement tools and survey resources.", "https://www.washingtongroup-disability.com/", false]
+    ] },
+    { title: "Shocks, risk & adaptive social protection", weeks: "Weeks 5–6 · Situation room", items: [
+      ["HDX — Humanitarian Data Exchange", "Country crisis datasets.", "https://data.humdata.org/", true],
+      ["INFORM Risk Index (EC JRC)", "Hazard, vulnerability and coping-capacity scores.", "https://drmkc.jrc.ec.europa.eu/inform-index", false],
+      ["WFP HungerMap LIVE & FAOSTAT", "Food insecurity monitoring and food-security statistics.", "https://hungermap.wfp.org/", true],
+      ["EM-DAT", "International disaster database (free with registration).", "https://www.emdat.be/", false]
+    ] },
+    { title: "Governance, delivery & institutions", weeks: "Weeks 5–7 · National plan", items: [
+      ["Worldwide Governance Indicators (WGI)", "Six dimensions of governance quality.", "https://www.worldbank.org/en/publication/worldwide-governance-indicators", true],
+      ["World Bank ID4D", "Identification coverage, relevant to registries and delivery systems.", "https://id4d.worldbank.org/", false],
+      ["Open Budget Survey", "Budget transparency and participation.", "https://internationalbudget.org/open-budget-survey/", false],
+      ["IMF World Economic Outlook & Fiscal Monitor", "Fiscal space and public debt.", "https://www.imf.org/en/Publications/WEO", true]
+    ] },
+    { title: "Regional sources", weeks: "Comparative context", items: [
+      ["ECLAC CEPALSTAT & Non-Contributory SP Database", "Statistics for Latin America and the Caribbean.", "https://statistics.cepal.org/", false],
+      ["ADB Social Protection Indicator", "Coverage and spending across Asia-Pacific.", "https://www.adb.org/what-we-do/topics/social-development/social-protection-indicator", false],
+      ["AfDB Data Portal", "African development and social statistics.", "https://dataportal.opendataforafrica.org/", true],
+      ["UN ESCWA Data Portal", "Statistics for the Arab States.", "https://data.unescwa.org/", false]
+    ] },
+    { title: "Aggregators for fast dashboard building", weeks: "Week 6 · AI & modelling", items: [
+      ["Our World in Data", "Clean, harmonised CSVs and a charts API.", "https://ourworldindata.org/", true],
+      ["World Bank Data360", "Multi-source query tool spanning many databases.", "https://data360.worldbank.org/", true],
+      ["DBnomics", "One API aggregating the IMF, OECD, Eurostat, ILO and national statistics offices.", "https://db.nomics.world/", true],
+      ["UNdata & OECD Data Explorer", "Cross-domain UN and OECD data.", "https://data.un.org/", false]
+    ] }
   ],
 
   weeks: [
