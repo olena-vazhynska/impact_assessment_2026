@@ -26,7 +26,7 @@
       <button role="tab" data-tab="overview" aria-selected="true">Overview</button>
       <button role="tab" data-tab="journey">Learning journey</button>
       <button role="tab" data-tab="timetable">Timetable</button>
-      <button role="tab" data-tab="workbench">Impact workbench</button>
+      <button role="tab" data-tab="dossier">Evidence dossier</button>
       <button role="tab" data-tab="resources">Resources</button>
       <button role="tab" data-tab="participants">Participants</button>
       <button role="tab" data-tab="demographics">Demographics</button>
@@ -116,43 +116,9 @@
       <p class="source-note">Source: <em>Agenda_Impact_2026_FINAL</em> timetable and the <em>A9718853</em> course flyer. Session times use the UTC offset stated in the agenda for each week.</p>
     </section>
 
-    <!-- IMPACT WORKBENCH -->
-    <section id="panel-workbench" data-panel="workbench" class="panel" role="tabpanel" hidden>
-      <div class="section-heading">
-        <p class="eyebrow">04 · Applied exercise</p>
-        <h2 class="section-title flush">Impact assessment workbench</h2>
-        <p class="muted">Draft a compact study design, then download it as a text file. Your entries stay in this browser and are not sent to a server.</p>
-      </div>
-      <div class="workbench-grid">
-        <div class="card workbench-form">
-          <form id="plan-form">
-            <label>Policy or programme to assess
-              <textarea name="programme" rows="2" placeholder="What intervention and population?" required></textarea></label>
-            <label>Decision this assessment should inform
-              <textarea name="decision" rows="2" placeholder="What will decision makers do with the findings?"></textarea></label>
-            <label>Theory of change
-              <textarea name="pathway" rows="2" placeholder="Inputs &#8594; delivery &#8594; uptake &#8594; outcomes &#8594; impact"></textarea></label>
-            <label>Key outcomes and indicators
-              <textarea name="outcomes" rows="2" placeholder="Coverage, adequacy, poverty, inequality, wellbeing…"></textarea></label>
-            <label>Available data
-              <textarea name="data" rows="2" placeholder="Administrative records, household surveys, programme data…"></textarea></label>
-            <label>Analytical approach
-              <select name="method" id="method-select"><option value="">Choose an approach</option></select></label>
-            <label>Risks, limitations and comparison strategy
-              <textarea name="limitations" rows="2" placeholder="Selection bias, missing data, counterfactual, ethics…"></textarea></label>
-            <div class="form-actions">
-              <button class="btn" type="submit">Download plan</button>
-              <button class="btn ghost" id="clear-plan" type="button">Clear</button>
-            </div>
-            <p class="muted" id="plan-status" aria-live="polite"></p>
-          </form>
-        </div>
-        <aside class="card checklist">
-          <h3>Design prompts</h3>
-          <ol id="prompts"></ol>
-          <p class="muted">Use the final assignment to turn this outline into a national plan for impact assessment.</p>
-        </aside>
-      </div>
+    <!-- COUNTRY EVIDENCE DOSSIER -->
+    <section id="panel-dossier" data-panel="dossier" class="panel" role="tabpanel" hidden>
+      <div id="dossier-app" aria-live="polite"></div>
     </section>
 
     <!-- RESOURCES -->
@@ -202,6 +168,8 @@
 
   <script src="data/course.js"></script>
   <script src="data/participants.js"></script>
+  <script src="data/samples.js"></script>
   <script src="assets/app.js"></script>
+  <script src="assets/dossier.js"></script>
 </body>
 </html>

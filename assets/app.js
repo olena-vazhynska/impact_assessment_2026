@@ -289,51 +289,7 @@
     }).join("");
   }
 
-  /* ---------- Impact workbench ---------- */
-  var PLAN_KEY = "impact-workbench-" + C.code;
-  function renderWorkbench() {
-    $("#method-select").innerHTML = '<option value="">Choose an approach</option>' +
-      C.workbench.methods.map(function (m) { return "<option>" + esc(m) + "</option>"; }).join("");
-    $("#prompts").innerHTML = C.workbench.prompts.map(function (p) { return "<li>" + esc(p) + "</li>"; }).join("");
-
-    var form = $("#plan-form");
-    var fields = Array.prototype.slice.call(form.elements).filter(function (el) { return el.name; });
-    try {
-      var saved = JSON.parse(localStorage.getItem(PLAN_KEY) || "{}");
-      fields.forEach(function (el) { if (saved[el.name] != null) el.value = saved[el.name]; });
-    } catch (e) { /* storage unavailable */ }
-
-    function save() {
-      var data = {};
-      fields.forEach(function (el) { data[el.name] = el.value; });
-      try { localStorage.setItem(PLAN_KEY, JSON.stringify(data)); } catch (e) { /* ignore */ }
-    }
-    form.addEventListener("input", save);
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      if (!form.programme.value.trim()) { form.programme.focus(); return; }
-      var L = {
-        programme: "Policy or programme to assess", decision: "Decision this assessment should inform",
-        pathway: "Theory of change", outcomes: "Key outcomes and indicators", data: "Available data",
-        method: "Analytical approach", limitations: "Risks, limitations and comparison strategy"
-      };
-      var lines = ["IMPACT ASSESSMENT — STUDY DESIGN", C.title + " (" + C.code + ")", ""];
-      fields.forEach(function (el) {
-        lines.push((L[el.name] || el.name).toUpperCase(), (el.value.trim() || "—"), "");
-      });
-      lines.push("Design prompts to revisit:");
-      C.workbench.prompts.forEach(function (p) { lines.push("  [ ] " + p); });
-      download("impact-assessment-study-design.txt", lines.join("\n"));
-      $("#plan-status").textContent = "Downloaded. Your draft is also saved in this browser.";
-    });
-
-    $("#clear-plan").addEventListener("click", function () {
-      fields.forEach(function (el) { el.value = ""; });
-      try { localStorage.removeItem(PLAN_KEY); } catch (e) { /* ignore */ }
-      $("#plan-status").textContent = "Cleared.";
-    });
-  }
+  // The "Country Evidence Dossier" tab is a self-contained module (assets/dossier.js).
 
   /* ---------- Resources & course info ---------- */
   function renderResources() {
@@ -470,7 +426,6 @@
   initTimetableControls();
   renderTimetable();
   initCalendar();
-  renderWorkbench();
   renderResources();
   renderParticipants();
   renderDemographics();
