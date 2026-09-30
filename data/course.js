@@ -26,6 +26,10 @@ window.COURSE = {
     web: "https://www.itcilo.org"
   },
 
+  lead:
+    "Measure coverage, adequacy, poverty and inequality, examine causal impacts, and translate " +
+    "findings into a national plan for impact assessment.",
+
   overview:
     "Impact assessment is a central component of the social protection policy planning process. " +
     "It is key for identifying gaps and weaknesses in existing social protection provision, and is a " +
@@ -34,6 +38,13 @@ window.COURSE = {
     "systems as they evolve over time. The course is centred around the use of administrative and household " +
     "survey data for the purpose of impact assessment of social protection systems, while also introducing " +
     "participants to key considerations in the design of scheme-specific impact evaluations.",
+
+  // Three summary cards on the Overview tab.
+  pillars: [
+    ["Map the pathway", "Define outcomes, indicators and theories of change for social protection schemes and systems."],
+    ["Choose the evidence", "Assess data sources and methods, from coverage and adequacy analysis to microsimulation and impact evaluation."],
+    ["Inform decisions", "Interpret findings and present accessible, compelling recommendations for policy makers."]
+  ],
 
   topics: [
     ["Identifying theories of change", "and impact pathways of social protection systems"],
@@ -56,6 +67,11 @@ window.COURSE = {
     ["Diploma for Social Protection Analysts", "This course is eligible for the ITCILO Diploma: complete three courses within five years and a capstone assessment"]
   ],
 
+  learningFormat:
+    "Flexible eCampus preparation, live interactive sessions, recorded presentations, individual and " +
+    "collaborative exercises, peer learning, technical forums, and an end-of-course assignment. Successful " +
+    "completion of assessments and the final assignment leads to an ITCILO Certificate of Achievement.",
+
   audience:
     "Practitioners with several years of work experience in social protection seeking to strengthen knowledge " +
     "and skills in impact assessment: professionals from government ministries, social security institutions, " +
@@ -66,6 +82,36 @@ window.COURSE = {
     ["Pre-course", "Flexible (asynchronous) self-guided online learning on eCampus and an end-of-phase assessment."],
     ["Real-time learning", "Live interactive sessions and video presentations by experienced trainers, blended with individual and group exercises, peer-to-peer assessment and online technical forums on eCampus."],
     ["End-of-course assignment", "Individual assignment applying technical knowledge to the participant's organization. Successful participants receive an ITCILO Certificate of Achievement."]
+  ],
+
+  // Impact workbench — a private, in-browser planning aid.
+  workbench: {
+    methods: [
+      "Descriptive coverage and adequacy analysis",
+      "Poverty and inequality analysis",
+      "Tax-benefit microsimulation",
+      "Quasi-experimental impact evaluation",
+      "Randomized impact evaluation",
+      "Mixed-methods or qualitative research"
+    ],
+    prompts: [
+      "Who is eligible, reached and left out?",
+      "Which outcomes can be observed reliably?",
+      "What would have happened without the intervention?",
+      "Which distributional groups matter?",
+      "Are data access, consent and privacy addressed?",
+      "How will uncertainty and limitations be communicated?"
+    ]
+  },
+
+  // Further reading for the applied exercise.
+  resources: [
+    ["Labour and social protection", "ILOSTAT", "Indicators and methodological resources from the ILO.", "https://ilostat.ilo.org/data/"],
+    ["Social protection", "ILO World Social Protection Database", "Country and scheme information for comparative context.", "https://www.social-protection.org/gimi/WSPDB.action?id=32"],
+    ["Development indicators", "World Bank Open Data", "Contextual demographic and economic series.", "https://data.worldbank.org/"],
+    ["Household surveys", "UNICEF MICS", "Survey data and tools relevant to child and household outcomes.", "https://mics.unicef.org/"],
+    ["Household surveys", "Living Standards Measurement Study", "Survey programmes and documentation for welfare analysis.", "https://www.worldbank.org/en/programs/lsms"],
+    ["Course information", "ITCILO course page", "Official course information and updates.", "https://www.itcilo.org/courses/impact-assessment-social-protection-analysts"]
   ],
 
   weeks: [

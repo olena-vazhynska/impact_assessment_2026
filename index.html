@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Impact Assessment 2026</title>
-  <meta name="description" content="Course dashboard — Impact Assessment for Social Protection Analysts (ITCILO A9718853), 5 October – 20 November 2026.">
+  <title>Impact Assessment 2026 — Course dashboard</title>
+  <meta name="description" content="Course dashboard — Impact Assessment for Social Protection Analysts (ITCILO A9718853), online, 5 October – 20 November 2026.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@400;600;700&family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -13,9 +13,10 @@
 <body>
   <header class="hero">
     <div class="wrap">
-      <div class="pills"><span class="pill solid">Online</span><span class="pill">Social Protection</span><span class="pill">Course A9718853</span></div>
+      <div class="pills"><span class="pill solid">Online · ITCILO eCampus</span><span class="pill">Social Protection</span><span class="pill">Course A9718853</span></div>
       <h1>Impact Assessment<br>for Social Protection Analysts</h1>
-      <p class="hero-sub">5 October – 20 November 2026 · 7 weeks · 100 hours · ITCILO eCampus</p>
+      <p class="hero-sub" id="hero-lead"></p>
+      <div class="hero-meta" id="hero-meta"></div>
       <div class="kpis" id="kpis"></div>
     </div>
   </header>
@@ -23,10 +24,12 @@
   <nav class="tabs" role="tablist" aria-label="Dashboard sections">
     <div class="wrap tabs-inner">
       <button role="tab" data-tab="overview" aria-selected="true">Overview</button>
+      <button role="tab" data-tab="journey">Learning journey</button>
       <button role="tab" data-tab="timetable">Timetable</button>
-      <button role="tab" data-tab="speakers">Resource persons</button>
+      <button role="tab" data-tab="workbench">Impact workbench</button>
+      <button role="tab" data-tab="resources">Resources</button>
       <button role="tab" data-tab="participants">Participants</button>
-      <button role="tab" data-tab="info">Course info</button>
+      <button role="tab" data-tab="demographics">Demographics</button>
     </div>
   </nav>
 
@@ -37,7 +40,8 @@
 
       <div class="grid-2">
         <article class="card">
-          <h2>Snapshot of the course</h2>
+          <p class="eyebrow">01 · The course</p>
+          <h2>What you will learn</h2>
           <p id="overview-text"></p>
         </article>
         <article class="card">
@@ -46,8 +50,7 @@
         </article>
       </div>
 
-      <h2 class="section-title">Seven-week journey</h2>
-      <div class="journey" id="journey"></div>
+      <div class="cards-3" id="pillars"></div>
 
       <div class="grid-2">
         <article class="card">
@@ -59,14 +62,50 @@
           <ol class="numbered" id="outcomes"></ol>
         </article>
       </div>
+
+      <h2 class="section-title">Resource persons</h2>
+      <p class="muted">Trainers and experts leading the live sessions.</p>
+      <div class="people-grid" id="people"></div>
+    </section>
+
+    <!-- LEARNING JOURNEY -->
+    <section id="panel-journey" data-panel="journey" class="panel" role="tabpanel" hidden>
+      <div class="section-heading">
+        <p class="eyebrow">02 · Learning journey</p>
+        <h2 class="section-title flush">Seven weeks, one applied plan</h2>
+        <p class="muted">Live discussions and practical exercises build toward an individual assignment grounded in your own national and institutional context.</p>
+      </div>
+      <div class="journey" id="journey"></div>
+
+      <div class="note">
+        <strong>Learning format</strong>
+        <p id="learning-format"></p>
+      </div>
+
+      <div class="grid-2">
+        <article class="card">
+          <h2>How it works</h2>
+          <div class="phases" id="phases"></div>
+        </article>
+        <article class="card">
+          <h2>Why join?</h2>
+          <div class="why-grid" id="why"></div>
+        </article>
+      </div>
     </section>
 
     <!-- TIMETABLE -->
     <section id="panel-timetable" data-panel="timetable" class="panel" role="tabpanel" hidden>
+      <div class="section-heading">
+        <p class="eyebrow">03 · Live programme</p>
+        <h2 class="section-title flush">Timetable</h2>
+        <p class="muted">Tuesdays and Thursdays, 14:00–15:30 in Turin (UTC+2 in weeks 1–4, UTC+1 from week 5, as in the agenda); the situation room (6a) runs until 16:00.</p>
+      </div>
       <div class="toolbar">
-        <div>
-          <h2 class="section-title flush">Live sessions</h2>
-          <p class="muted">Tuesdays and Thursdays, 14:00–15:30 CEST/CET (UTC+2 in weeks 1–4, UTC+1 in weeks 5–7, as in the agenda); session 6a runs until 16:00.</p>
+        <div class="toolbar-actions">
+          <label for="week-filter" class="visually-hidden">Filter by week</label>
+          <select id="week-filter"><option value="all">All seven weeks</option></select>
+          <span class="muted" id="session-count" aria-live="polite"></span>
         </div>
         <div class="toolbar-actions">
           <label class="switch"><input type="checkbox" id="tz-toggle"> <span>Show my local time</span></label>
@@ -74,39 +113,86 @@
         </div>
       </div>
       <div id="weeks"></div>
+      <p class="source-note">Source: <em>Agenda_Impact_2026_FINAL</em> timetable and the <em>A9718853</em> course flyer. Session times use the UTC offset stated in the agenda for each week.</p>
     </section>
 
-    <!-- SPEAKERS -->
-    <section id="panel-speakers" data-panel="speakers" class="panel" role="tabpanel" hidden>
-      <h2 class="section-title">Resource persons</h2>
-      <p class="muted">Trainers and experts leading the live sessions.</p>
-      <div class="people-grid" id="people"></div>
-    </section>
-
-    <!-- PARTICIPANTS -->
-    <section id="panel-participants" data-panel="participants" class="panel" role="tabpanel" hidden>
-      <h2 class="section-title">Participants</h2>
-      <div id="participants-body"></div>
-    </section>
-
-    <!-- INFO -->
-    <section id="panel-info" data-panel="info" class="panel" role="tabpanel" hidden>
-      <div class="grid-2">
-        <article class="card">
-          <h2>Who takes this course?</h2>
-          <p id="audience"></p>
-        </article>
-        <article class="card">
-          <h2>How it works</h2>
-          <div class="phases" id="phases"></div>
-        </article>
+    <!-- IMPACT WORKBENCH -->
+    <section id="panel-workbench" data-panel="workbench" class="panel" role="tabpanel" hidden>
+      <div class="section-heading">
+        <p class="eyebrow">04 · Applied exercise</p>
+        <h2 class="section-title flush">Impact assessment workbench</h2>
+        <p class="muted">Draft a compact study design, then download it as a text file. Your entries stay in this browser and are not sent to a server.</p>
       </div>
-      <h2 class="section-title">Why join?</h2>
-      <div class="why-grid" id="why"></div>
+      <div class="workbench-grid">
+        <div class="card workbench-form">
+          <form id="plan-form">
+            <label>Policy or programme to assess
+              <textarea name="programme" rows="2" placeholder="What intervention and population?" required></textarea></label>
+            <label>Decision this assessment should inform
+              <textarea name="decision" rows="2" placeholder="What will decision makers do with the findings?"></textarea></label>
+            <label>Theory of change
+              <textarea name="pathway" rows="2" placeholder="Inputs &#8594; delivery &#8594; uptake &#8594; outcomes &#8594; impact"></textarea></label>
+            <label>Key outcomes and indicators
+              <textarea name="outcomes" rows="2" placeholder="Coverage, adequacy, poverty, inequality, wellbeing…"></textarea></label>
+            <label>Available data
+              <textarea name="data" rows="2" placeholder="Administrative records, household surveys, programme data…"></textarea></label>
+            <label>Analytical approach
+              <select name="method" id="method-select"><option value="">Choose an approach</option></select></label>
+            <label>Risks, limitations and comparison strategy
+              <textarea name="limitations" rows="2" placeholder="Selection bias, missing data, counterfactual, ethics…"></textarea></label>
+            <div class="form-actions">
+              <button class="btn" type="submit">Download plan</button>
+              <button class="btn ghost" id="clear-plan" type="button">Clear</button>
+            </div>
+            <p class="muted" id="plan-status" aria-live="polite"></p>
+          </form>
+        </div>
+        <aside class="card checklist">
+          <h3>Design prompts</h3>
+          <ol id="prompts"></ol>
+          <p class="muted">Use the final assignment to turn this outline into a national plan for impact assessment.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- RESOURCES -->
+    <section id="panel-resources" data-panel="resources" class="panel" role="tabpanel" hidden>
+      <div class="section-heading">
+        <p class="eyebrow">05 · Further reading</p>
+        <h2 class="section-title flush">Data and methods</h2>
+        <p class="muted">Starting points for the applied exercise. Check the scope, definitions, coverage and update date of each source before analysis.</p>
+      </div>
+      <div class="cards-3" id="resources"></div>
+
       <div class="grid-2">
         <article class="card" id="facts"></article>
         <article class="card" id="contact"></article>
       </div>
+      <div class="card">
+        <h2>Who takes this course?</h2>
+        <p id="audience"></p>
+      </div>
+      <p class="source-note">This dashboard is an orientation and planning aid; the ITCILO eCampus remains the source for assignments and session links.</p>
+    </section>
+
+    <!-- PARTICIPANTS -->
+    <section id="panel-participants" data-panel="participants" class="panel" role="tabpanel" hidden>
+      <div class="section-heading">
+        <p class="eyebrow">06 · The cohort</p>
+        <h2 class="section-title flush">Participants</h2>
+        <p class="muted">Search, filter and sort the roster; the summary charts update with your filters.</p>
+      </div>
+      <div id="participants-body"></div>
+    </section>
+
+    <!-- DEMOGRAPHICS -->
+    <section id="panel-demographics" data-panel="demographics" class="panel" role="tabpanel" hidden>
+      <div class="section-heading">
+        <p class="eyebrow">07 · The cohort</p>
+        <h2 class="section-title flush">Demographics</h2>
+        <p class="muted">Geographic and organizational make-up of the cohort, derived from the participant roster.</p>
+      </div>
+      <div id="demographics-body"></div>
     </section>
   </main>
 
