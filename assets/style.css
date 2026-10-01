@@ -56,7 +56,7 @@ a { color: var(--primary); }
   background:
     linear-gradient(to top, rgba(31,58,115,.94) 6%, rgba(31,58,115,.30) 60%, rgba(31,58,115,.10) 100%),
     linear-gradient(100deg, rgba(40,75,150,.96) 0%, rgba(40,75,150,.78) 48%, rgba(40,75,150,.42) 100%),
-    url("course-hero.jpg?v=20261003") right center / cover no-repeat;
+    url("course-hero.jpg?v=20261004") right center / cover no-repeat;
   padding: 36px 0 30px;
 }
 .hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--ilo-cyan); }
