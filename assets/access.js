@@ -15,7 +15,7 @@
   if (mode !== "participant" && mode !== "participants") return;
 
   // Remove the admin-only tabs and their panels.
-  ["dossier", "resources"].forEach(function (t) {
+  ["dossier", "resources", "immersive"].forEach(function (t) {
     var btn = document.querySelector('.tabs button[data-tab="' + t + '"]');
     if (btn) btn.remove();
     var panel = document.getElementById("panel-" + t);
