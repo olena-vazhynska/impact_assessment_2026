@@ -297,11 +297,6 @@
     var apiItems = C.resourceGroups.reduce(function (a, g) {
       return a + g.items.filter(function (it) { return it[3]; }).length;
     }, 0);
-    var sdgBlock = $("#sdg131-block");
-    if (sdgBlock && C.sdg131) {
-      sdgBlock.innerHTML = '<div class="card sdg-card"><p>' + esc(C.sdg131.body) + "</p>" +
-        '<p class="muted" style="margin:.5rem 0 0">' + esc(C.sdg131.note) + "</p></div>";
-    }
     var html = '<div class="card indicators-card"><h2>Suggested indicators to pull</h2>' +
       '<p class="muted">A starting set for a social protection impact dashboard.</p>' +
       '<ul class="chips-list">' + C.indicators.map(function (i) { return '<li>' + esc(i) + "</li>"; }).join("") + "</ul>" +

@@ -104,13 +104,6 @@ window.COURSE = {
     ]
   },
 
-  // How the flagship coverage indicator is sourced (SDG 1.3.1 metadata, 2025-03-28).
-  sdg131: {
-    title: "The flagship indicator: SDG 1.3.1",
-    body: "SDG 1.3.1 — the proportion of the population covered by social protection floors and systems — is monitored by the ILO as custodian agency. Its primary data source is the ILO Social Security Inquiry (SSI); results are compiled in the World Social Protection Database, drawing secondary data from the World Bank, UNICEF, UN Women, HelpAge, the OECD and the ISSA. Coverage is reported by function: children, maternity, disability, old-age pensions, unemployment, employment injury, and the poor and vulnerable.",
-    note: "Source: SDG indicator 1.3.1 metadata (custodian: ILO), last updated 2025-03-28. Related indicators: 3.8.1 and 3.8.2 (universal health coverage) and 1.a.2."
-  },
-
   // Indicators worth pulling into an impact-assessment dashboard.
   indicators: [
     "SDG 1.3.1 — social protection coverage by function",
