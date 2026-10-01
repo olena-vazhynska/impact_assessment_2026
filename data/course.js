@@ -206,38 +206,38 @@ window.COURSE = {
   weeks: [
     { n: 1, title: "Mapping social protection impacts", range: "05 – 11 October 2026", start: "2026-10-05", end: "2026-10-11",
       sessions: [
-        { id: "1a", title: "Joint Opening Ceremony", start: "2026-10-06T14:00:00+02:00", end: "2026-10-06T15:30:00+02:00", people: ["ITCILO Team"], kind: "ceremony" },
-        { id: "1b", title: "Range of analysis: selecting sources of social protection data and defining the indicators", start: "2026-10-08T14:00:00+02:00", end: "2026-10-08T15:30:00+02:00", people: ["Valeria Nesterenko", "Olena Vazhynska"] }
+        { id: "1a", title: "Joint Opening Ceremony", start: "2026-10-06T14:00:00+02:00", end: "2026-10-06T15:30:00+02:00", people: ["ITCILO Team"], kind: "ceremony", zoom: "https://itcilo-org.zoom.us/j/64093077955" },
+        { id: "1b", title: "Range of analysis: selecting sources of social protection data and defining the indicators", start: "2026-10-08T14:00:00+02:00", end: "2026-10-08T15:30:00+02:00", people: ["Valeria Nesterenko", "Olena Vazhynska"], zoom: "https://itcilo-org.zoom.us/j/64229139807?pwd=scbKCBayxVaAkcuU73cfbkzUZ0wB9a.1" }
       ] },
     { n: 2, title: "Reading the menu & digesting administrative data", range: "12 – 18 October 2026", start: "2026-10-12", end: "2026-10-18",
       sessions: [
-        { id: "2a", title: "What's on the menu? Theories of change, methods and role of evidence", start: "2026-10-13T14:00:00+02:00", end: "2026-10-13T15:30:00+02:00", people: ["Olena Vazhynska"] },
-        { id: "2b", title: "Mapping social protection impacts", start: "2026-10-15T14:00:00+02:00", end: "2026-10-15T15:30:00+02:00", people: ["Chris De Neubourg"] }
+        { id: "2a", title: "What's on the menu? Theories of change, methods and role of evidence", start: "2026-10-13T14:00:00+02:00", end: "2026-10-13T15:30:00+02:00", people: ["Olena Vazhynska"], zoom: "https://itcilo-org.zoom.us/j/62196547143?pwd=0oLwX43eIaMCY7g88MhpdE1Bpvodre.1" },
+        { id: "2b", title: "Mapping social protection impacts", start: "2026-10-15T14:00:00+02:00", end: "2026-10-15T15:30:00+02:00", people: ["Chris De Neubourg"], zoom: "https://itcilo-org.zoom.us/j/64787148794?pwd=dzIcoe9FMzROaGzaf6RIpJB3eOw45s.1" }
       ] },
     { n: 3, title: "Survey analysis & microsimulation", range: "19 – 25 October 2026", start: "2026-10-19", end: "2026-10-25",
       sessions: [
-        { id: "3a", title: "Getting familiar with microdata", start: "2026-10-20T14:00:00+02:00", end: "2026-10-20T15:30:00+02:00", people: ["Zina Nimeh"] },
-        { id: "3b", title: "Microsimulation", start: "2026-10-22T14:00:00+02:00", end: "2026-10-22T15:30:00+02:00", people: ["Zina Nimeh"] }
+        { id: "3a", title: "Getting familiar with microdata", start: "2026-10-20T14:00:00+02:00", end: "2026-10-20T15:30:00+02:00", people: ["Zina Nimeh"], zoom: "https://itcilo-org.zoom.us/j/66985000214?pwd=QnfGW8ITDBQfN4uxOGkf6aWtLeYPzw.1" },
+        { id: "3b", title: "Microsimulation", start: "2026-10-22T14:00:00+02:00", end: "2026-10-22T15:30:00+02:00", people: ["Zina Nimeh"], zoom: "https://itcilo-org.zoom.us/j/62114596258?pwd=GtpOYTVhzAKlxviwlB47UOvlNfe5Ub.1" }
       ] },
     { n: 4, title: "Economic impacts & impact evaluation", range: "26 October – 01 November 2026", start: "2026-10-26", end: "2026-11-01",
       sessions: [
-        { id: "4a", title: "Impact evaluation", start: "2026-10-27T14:00:00+02:00", end: "2026-10-27T15:30:00+02:00", people: ["Zina Nimeh"] },
-        { id: "4b", title: "From assessing immediate outcomes to long-term impacts. Impact of social protection benefits, taxes and social security contributions in reducing income inequalities", start: "2026-10-29T14:00:00+02:00", end: "2026-10-29T15:30:00+02:00", people: ["Umberto Cattaneo"] }
+        { id: "4a", title: "Impact evaluation", start: "2026-10-27T14:00:00+02:00", end: "2026-10-27T15:30:00+02:00", people: ["Zina Nimeh"], zoom: "https://itcilo-org.zoom.us/j/63702764627?pwd=y0O0gZM0G6C8Z6QPcZ89c4R8XelfrV.1" },
+        { id: "4b", title: "From assessing immediate outcomes to long-term impacts. Impact of social protection benefits, taxes and social security contributions in reducing income inequalities", start: "2026-10-29T14:00:00+02:00", end: "2026-10-29T15:30:00+02:00", people: ["Umberto Cattaneo"], zoom: "https://itcilo-org.zoom.us/j/69876489163?pwd=V0diydVrcDiZ7tPLydnhwZmUpM6ZaU.1" }
       ] },
     { n: 5, title: "Qualitative research & putting it all together", range: "02 – 08 November 2026", start: "2026-11-02", end: "2026-11-08",
       sessions: [
-        { id: "5a", title: "Qualitative research on social protection", start: "2026-11-03T14:00:00+01:00", end: "2026-11-03T15:30:00+01:00", people: ["Amjad Rabi"] },
-        { id: "5b", title: "From impacts to setting new benchmarks. Lessons for strengthening social protection systems", subtitle: "Beyond impact: institutional factors, methodological frontiers and emerging techniques", start: "2026-11-05T14:00:00+01:00", end: "2026-11-05T15:30:00+01:00", people: ["Amjad Rabi"] }
+        { id: "5a", title: "Qualitative research on social protection", start: "2026-11-03T14:00:00+01:00", end: "2026-11-03T15:30:00+01:00", people: ["Amjad Rabi"], zoom: "https://itcilo-org.zoom.us/j/68723334824?pwd=KOUZb2FZCnVwIx6aToEeHBHOiCp7Ie.1" },
+        { id: "5b", title: "From impacts to setting new benchmarks. Lessons for strengthening social protection systems", subtitle: "Beyond impact: institutional factors, methodological frontiers and emerging techniques", start: "2026-11-05T14:00:00+01:00", end: "2026-11-05T15:30:00+01:00", people: ["Amjad Rabi"], zoom: "https://itcilo-org.zoom.us/j/65218543063?pwd=IitPEQezlGID6k2WTmAolRfdTxLeGR.1" }
       ] },
     { n: 6, title: "Sharing knowledge and applying learning", range: "09 – 15 November 2026", start: "2026-11-09", end: "2026-11-15",
       sessions: [
-        { id: "6a", title: "Situation room: Multidisciplinary exercise", start: "2026-11-10T14:00:00+01:00", end: "2026-11-10T16:00:00+01:00", people: ["ITCILO Team"], kind: "exercise" },
-        { id: "6b", title: "AI and Quantitative Modelling", start: "2026-11-12T14:00:00+01:00", end: "2026-11-12T15:30:00+01:00", people: ["Martin Blumhart"] }
+        { id: "6a", title: "Situation room: Multidisciplinary exercise", start: "2026-11-10T14:00:00+01:00", end: "2026-11-10T16:00:00+01:00", people: ["ITCILO Team"], kind: "exercise", zoom: "https://itcilo-org.zoom.us/j/64093077955" },
+        { id: "6b", title: "AI and Quantitative Modelling", start: "2026-11-12T14:00:00+01:00", end: "2026-11-12T15:30:00+01:00", people: ["Martin Blumhart"], zoom: "https://itcilo-org.zoom.us/j/9614968776" }
       ] },
     { n: 7, title: "A National Plan for Impact Assessment", range: "16 – 20 November 2026", start: "2026-11-16", end: "2026-11-20",
       sessions: [
-        { id: "7a", title: "Final presentation", start: "2026-11-17T14:00:00+01:00", end: "2026-11-17T15:30:00+01:00", people: ["ITCILO Team"], kind: "exercise" },
-        { id: "7b", title: "Closing Ceremony", start: "2026-11-19T14:00:00+01:00", end: "2026-11-19T15:30:00+01:00", people: ["ITCILO Team"], kind: "ceremony" }
+        { id: "7a", title: "Final presentation", start: "2026-11-17T14:00:00+01:00", end: "2026-11-17T15:30:00+01:00", people: ["ITCILO Team"], kind: "exercise", zoom: "https://itcilo-org.zoom.us/j/68743843252?pwd=31OBySxybbNk5sb0XkpnUQpCyWnjvs.1" },
+        { id: "7b", title: "Closing Ceremony", start: "2026-11-19T14:00:00+01:00", end: "2026-11-19T15:30:00+01:00", people: ["ITCILO Team"], kind: "ceremony", zoom: "https://itcilo-org.zoom.us/j/64093077955" }
       ] }
   ]
 };

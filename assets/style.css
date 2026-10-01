@@ -169,6 +169,9 @@ select, .filters input { font: inherit; padding: 8px 12px; border: 1px solid var
 }
 .btn.ghost { background: transparent; color: var(--primary); padding: 5px 10px; font-size: 12px; }
 .btn:hover { filter: brightness(1.08); }
+.btn.join { background: var(--ilo-cyan); border-color: var(--ilo-cyan); color: #072a40; }
+.btn.join.ghost { background: transparent; border-color: var(--ilo-cyan); color: var(--ilo-cyan); padding: 5px 10px; font-size: 12px; }
+.next-join { display: inline-block; margin-top: 12px; }
 .week { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-top: 14px; overflow: hidden; box-shadow: var(--shadow); scroll-margin-top: 70px; }
 .week.current { border-color: var(--accent); }
 .week-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; padding: 14px 20px; background: var(--surface-2); }

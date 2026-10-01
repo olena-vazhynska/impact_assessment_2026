@@ -129,6 +129,7 @@
         '<div class="next-title">' + esc(s.id.toUpperCase()) + " — " + esc(s.title) + "</div>" +
         '<div class="muted" style="margin:0">' + fmtDay(s.startD, agendaTz(s.start)) + " · " + fmtTime(s.startD, agendaTz(s.start)) + "–" + fmtTime(s.endD, agendaTz(s.start)) +
         " " + offsetLabel(s.start) + " · your time " + fmtTime(s.startD) + " · " + esc(s.people.join(", ")) + "</div>" +
+        (s.zoom ? '<a class="btn join next-join" href="' + esc(s.zoom) + '" target="_blank" rel="noopener">Join Zoom &#8599;</a>' : "") +
       "</div>" +
       '<div class="countdown" id="countdown"></div>';
     function tick() {
@@ -217,7 +218,9 @@
               (s.subtitle ? '<p class="s-sub">' + esc(s.subtitle) + "</p>" : "") +
               '<div class="s-people">' + s.people.map(function (p) { return '<span class="chip">' + esc(p) + "</span>"; }).join("") + "</div>" +
             "</div>" +
-            '<div class="s-side">' + badge + (st !== "done" ? '<button class="btn ghost" data-ics="' + s.id + '">+ Calendar</button>' : "") + "</div>" +
+            '<div class="s-side">' + badge +
+              (st !== "done" && s.zoom ? '<a class="btn join' + (st === "live" || s === nx ? "" : " ghost") + '" href="' + esc(s.zoom) + '" target="_blank" rel="noopener">Join Zoom &#8599;</a>' : "") +
+              (st !== "done" ? '<button class="btn ghost" data-ics="' + s.id + '">+ Calendar</button>' : "") + "</div>" +
           "</div>";
         }).join("") +
       "</div>";
@@ -247,8 +250,9 @@
         "DTSTART:" + icsDate(s.startD),
         "DTEND:" + icsDate(s.endD),
         "SUMMARY:" + icsEscape("Impact Assessment 2026 · Live session " + s.id + ": " + s.title),
-        "DESCRIPTION:" + icsEscape("Week " + s.week.n + " — " + s.week.title + "\nResource persons: " + s.people.join(", ") + (s.subtitle ? "\n" + s.subtitle : "")),
-        "LOCATION:ITCILO eCampus",
+        "DESCRIPTION:" + icsEscape("Week " + s.week.n + " — " + s.week.title + "\nResource persons: " + s.people.join(", ") + (s.subtitle ? "\n" + s.subtitle : "") + (s.zoom ? "\nJoin Zoom: " + s.zoom : "")),
+        "LOCATION:" + icsEscape(s.zoom ? "Zoom · " + s.zoom : "ITCILO eCampus"),
+        (s.zoom ? "URL:" + s.zoom : "X-NO-URL:"),
         "END:VEVENT"
       );
     });
