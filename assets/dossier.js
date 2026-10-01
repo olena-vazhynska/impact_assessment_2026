@@ -1336,7 +1336,12 @@
   }
 
   function render() {
-    MOUNT.innerHTML = toolbar() +
+    var heading = view.screen === "home"
+      ? '<div class="section-heading"><p class="eyebrow">04 · Applied exercise</p>' +
+        '<h2 class="section-title flush">Country evidence dossier</h2>' +
+        '<p class="muted">Build, station by station, an evidence picture of social protection impacts in one country — ending in a national plan for impact assessment.</p></div>'
+      : "";
+    MOUNT.innerHTML = heading + toolbar() +
       '<div class="dos-body">' + (view.screen === "station" ? renderStation(view.station) : renderHome()) + "</div>" +
       renderCellEditor();
     if (view.screen === "station") {
