@@ -1,30 +1,35 @@
+/* ITCILO brand palette — Blue (Pantone 286 C) + Cyan accent + neutral blacks */
 :root {
-  --ilo-navy: #003b63;
-  --ilo-blue: #00558c;
-  --ilo-cyan: #009edb;
-  --bg: #f4f7fb;
+  --ilo-navy: #1f3a73;        /* darkened Blue for hero depth */
+  --ilo-blue: #284B96;        /* Blue 100% — primary */
+  --ilo-blue-80: #4E64A6;     /* Blue 80% */
+  --ilo-blue-60: #7885BC;     /* Blue 60% */
+  --ilo-blue-40: #A4ABD4;     /* Blue 40% */
+  --ilo-blue-20: #D1D5EB;     /* Blue 20% */
+  --ilo-cyan: #00A3E0;        /* Cyan — accent */
+  --bg: #f5f6fb;
   --surface: #ffffff;
-  --surface-2: #eef4f9;
-  --text: #13213b;
-  --muted: #5b6a82;
-  --border: #d9e2ef;
+  --surface-2: #eef0f8;
+  --text: #2B2A29;            /* Black 100% */
+  --muted: #5B5B5B;           /* Black 80% */
+  --border: #dcdee8;
   --accent: var(--ilo-cyan);
   --primary: var(--ilo-blue);
-  --done: #8aa0bf;
-  --live: #d9412b;
-  --shadow: 0 1px 2px rgba(0, 59, 99, .06), 0 4px 16px rgba(0, 59, 99, .06);
+  --done: #898989;            /* Black 60% */
+  --live: #c0392b;
+  --shadow: 0 1px 2px rgba(40, 75, 150, .06), 0 4px 16px rgba(40, 75, 150, .07);
   --radius: 12px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0c1424; --surface: #131e33; --surface-2: #1a2742; --text: #e6ecf6;
-    --muted: #9aa9c2; --border: #26365a; --primary: #4aa9e6; --accent: #4bc0f0; --done: #5f7090;
+    --bg: #10152a; --surface: #182142; --surface-2: #212c54; --text: #eef0f7;
+    --muted: #aab2c8; --border: #2e3a63; --primary: #7885BC; --accent: #3bb8ea; --done: #6a748f;
     --shadow: none;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0c1424; --surface: #131e33; --surface-2: #1a2742; --text: #e6ecf6;
-  --muted: #9aa9c2; --border: #26365a; --primary: #4aa9e6; --accent: #4bc0f0; --done: #5f7090;
+  --bg: #10152a; --surface: #182142; --surface-2: #212c54; --text: #eef0f7;
+  --muted: #aab2c8; --border: #2e3a63; --primary: #7885BC; --accent: #3bb8ea; --done: #6a748f;
   --shadow: none;
 }
 
@@ -36,22 +41,26 @@ body {
   -webkit-font-smoothing: antialiased;
   border-top: 5px solid var(--ilo-cyan);
 }
-h1, h2, h3, .kpi-value, .tabs button, .week-num, .card-index { font-family: "Fira Sans Condensed", "Noto Sans", sans-serif; }
+h1, h2, h3, .kpi-value, .tabs button, .week-num, .card-index { font-family: "Noto Sans", sans-serif; }
+h1, h2, h3 { font-weight: 800; letter-spacing: -.01em; }
 a { color: var(--primary); }
 .wrap { max-width: 1160px; margin: 0 auto; padding: 0 16px; }
 .muted { color: var(--muted); margin: .25rem 0 1rem; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .eyebrow { font: 700 12px/1 "Noto Sans", sans-serif; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin: 0 0 8px; }
 
-/* Hero */
+/* Hero — course image under an ITCILO-blue overlay */
 .hero {
   color: #fff;
+  position: relative;
   background:
-    radial-gradient(1200px 420px at 88% -12%, rgba(0,158,219,.5), transparent 60%),
-    linear-gradient(135deg, var(--ilo-navy), var(--ilo-blue));
-  padding: 34px 0 30px;
+    linear-gradient(to top, rgba(31,58,115,.94) 6%, rgba(31,58,115,.30) 60%, rgba(31,58,115,.10) 100%),
+    linear-gradient(100deg, rgba(40,75,150,.96) 0%, rgba(40,75,150,.78) 48%, rgba(40,75,150,.42) 100%),
+    url("course-hero.jpg?v=20261003") right center / cover no-repeat;
+  padding: 36px 0 30px;
 }
-.hero h1 { font-weight: 400; text-transform: uppercase; font-size: clamp(27px, 5vw, 46px); line-height: 1.05; margin: 14px 0 10px; letter-spacing: .01em; }
+.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--ilo-cyan); }
+.hero h1 { font-weight: 800; text-transform: uppercase; font-size: clamp(27px, 5vw, 46px); line-height: 1.04; margin: 14px 0 10px; letter-spacing: -.005em; text-shadow: 0 1px 12px rgba(16,24,48,.35); }
 .hero-sub { margin: 0 0 20px; font-weight: 600; opacity: .9; max-width: 60ch; }
 .pills { display: flex; flex-wrap: wrap; gap: 8px; }
 .pill { font: 700 12px/1 "Noto Sans", sans-serif; text-transform: uppercase; letter-spacing: .03em; border: 1.5px solid rgba(255,255,255,.7); border-radius: 999px; padding: 7px 14px; }
@@ -104,10 +113,10 @@ main { padding-top: 24px; padding-bottom: 48px; }
   border-radius: var(--radius); padding: 18px 22px; box-shadow: var(--shadow);
 }
 .next-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); }
-.next-title { font: 600 21px/1.25 "Fira Sans Condensed", sans-serif; margin: 4px 0; }
+.next-title { font: 600 21px/1.25 "Noto Sans", sans-serif; margin: 4px 0; }
 .countdown { display: flex; gap: 10px; }
 .countdown div { text-align: center; min-width: 58px; background: var(--surface-2); border-radius: 8px; padding: 8px 6px; }
-.countdown b { display: block; font: 700 26px/1 "Fira Sans Condensed", sans-serif; color: var(--primary); font-variant-numeric: tabular-nums; }
+.countdown b { display: block; font: 700 26px/1 "Noto Sans", sans-serif; color: var(--primary); font-variant-numeric: tabular-nums; }
 .countdown span { font-size: 11px; text-transform: uppercase; color: var(--muted); }
 @media (max-width: 640px) { .next-card { grid-template-columns: 1fr; } }
 
@@ -191,7 +200,7 @@ select, .filters input { font: inherit; padding: 8px 12px; border: 1px solid var
 .people-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 14px; }
 .person { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
 .person-top { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
-.avatar { flex: none; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; color: #fff; font: 700 17px "Fira Sans Condensed", sans-serif; background: linear-gradient(135deg, var(--ilo-blue), var(--ilo-cyan)); }
+.avatar { flex: none; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; color: #fff; font: 700 17px "Noto Sans", sans-serif; background: linear-gradient(135deg, var(--ilo-blue), var(--ilo-cyan)); }
 .person h3 { margin: 0; font-size: 18px; }
 .person .count { font-size: 12px; color: var(--muted); }
 .person ul { margin: 0; padding-left: 18px; font-size: 14px; }
@@ -295,7 +304,7 @@ address { font-style: normal; }
 .dos-ring svg { width: 56px; height: 56px; flex: none; }
 .ring-bg { fill: none; stroke: var(--surface-2); stroke-width: 6; }
 .ring-fg { fill: none; stroke: var(--accent); stroke-width: 6; stroke-linecap: round; transform: rotate(-90deg); transform-origin: 50% 50%; transition: stroke-dashoffset .4s ease; }
-.ring-txt { font: 700 15px "Fira Sans Condensed", sans-serif; fill: var(--text); }
+.ring-txt { font: 700 15px "Noto Sans", sans-serif; fill: var(--text); }
 .dos-ring-label b { display: block; font-size: 14px; }
 .dos-ring-label span { font-size: 12px; color: var(--muted); }
 .dos-overall { justify-self: end; }
@@ -331,7 +340,7 @@ address { font-style: normal; }
 .dos-station { display: flex; align-items: center; gap: 12px; text-align: left; appearance: none; cursor: pointer; font: inherit; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; color: inherit; transition: border-color .15s ease, transform .15s ease; }
 .dos-station:hover { border-color: var(--accent); transform: translateY(-1px); }
 .dos-station:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.dos-station-id { font: 700 14px "Fira Sans Condensed", sans-serif; color: #fff; background: var(--primary); border-radius: 7px; padding: 6px 8px; flex: none; }
+.dos-station-id { font: 700 14px "Noto Sans", sans-serif; color: #fff; background: var(--primary); border-radius: 7px; padding: 6px 8px; flex: none; }
 .dos-station.s-done .dos-station-id { background: var(--st-green-dot); }
 .dos-station.s-in_progress .dos-station-id { background: var(--st-amber-dot); }
 .dos-station-main { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
