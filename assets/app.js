@@ -293,6 +293,7 @@
 
   /* ---------- Resources & course info ---------- */
   function renderResources() {
+    if (!$("#resources")) return; // Resources panel removed in participant view
     var totalItems = C.resourceGroups.reduce(function (a, g) { return a + g.items.length; }, 0);
     var apiItems = C.resourceGroups.reduce(function (a, g) {
       return a + g.items.filter(function (it) { return it[3]; }).length;
