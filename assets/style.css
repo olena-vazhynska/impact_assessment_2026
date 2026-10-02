@@ -651,3 +651,5 @@ address { font-style: normal; }
 .dos-modal .form-actions { margin-top: 16px; }
 
 .footer { border-top: 1px solid var(--border); padding: 18px 0; font-size: 13px; color: var(--muted); }
+.footer p { margin: 0; }
+.footer-disclaimer { margin: 0 0 8px !important; padding: 10px 14px; background: var(--surface-2); border-left: 3px solid var(--accent); border-radius: 8px; line-height: 1.5; }
