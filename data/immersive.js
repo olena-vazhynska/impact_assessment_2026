@@ -96,7 +96,9 @@ window.IMMERSIVE = {
     { id: "p-mgbemena", name: "Chioma Mgbemena", country: "Nigeria", region: "Africa",
       organisation: "NIMASA", role: "Technical Assistant" },
     { id: "p-uzuegbu", name: "Obinna Uzuegbu", country: "Nigeria", region: "Africa",
-      organisation: "Ministry of Poverty Alleviation, Abia State", role: "Social Policy Officer" }
+      organisation: "Ministry of Poverty Alleviation, Abia State", role: "Social Policy Officer" },
+    { id: "p-habambi", name: "Habambi Philemon Habambi", country: "Tanzania", region: "Africa",
+      organisation: "Women and Social Protection (WSP) Tanzania", role: "Researcher & Programme Officer" }
   ],
 
   // Illustrative journey + confidence for the Amrosea worked example (its

@@ -33,5 +33,8 @@ window.PARTICIPANTS = [
     position: "Technical Assistant" },
   { name: "Obinna Faithpaul Uzuegbu", sex: "M", country: "Nigeria", region: "Africa",
     organization: "Ministry of Poverty Alleviation and Social Protection, Abia State", orgType: "Government",
-    position: "Social Policy Officer" }
+    position: "Social Policy Officer" },
+  { name: "Habambi Philemon Habambi", sex: "M", country: "Tanzania, United Republic of", region: "Africa",
+    organization: "Women and Social Protection (WSP) Tanzania", orgType: "Civil society / NGO",
+    position: "Researcher & Programme Officer" }
 ];
