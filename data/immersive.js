@@ -95,6 +95,8 @@ window.IMMERSIVE = {
       organisation: "Ministry of Poverty Alleviation, Abia State", role: "Commissioner" },
     { id: "p-mgbemena", name: "Chioma Mgbemena", country: "Nigeria", region: "Africa",
       organisation: "NIMASA", role: "Technical Assistant" },
+    { id: "p-okoh", name: "Nneka Esther Okoh", country: "Nigeria", region: "Africa",
+      organisation: "World Bank", role: "Consultant Economist (STC)" },
     { id: "p-uzuegbu", name: "Obinna Uzuegbu", country: "Nigeria", region: "Africa",
       organisation: "Ministry of Poverty Alleviation, Abia State", role: "Social Policy Officer" },
     { id: "p-habambi", name: "Habambi Philemon Habambi", country: "Tanzania", region: "Africa",
