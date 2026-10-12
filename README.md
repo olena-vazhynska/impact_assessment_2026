@@ -10,6 +10,7 @@ Static dashboard for ITCILO course **A9718853** (online, 5 October – 20 Novemb
 - **Resources** — data and methods sources, key facts, contacts and audience
 - **Participants** — searchable, filterable, sortable roster with summary charts
 - **Demographics** — geographic and organizational make-up of the cohort, derived from the roster
+- **Explore Evidence** — searchable catalogue of 3,000 social protection publications. Self-contained app in `evidence/` (code, records and search index), embedded in the tab
 
 ## Editing the content
 | File | Content |
