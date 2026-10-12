@@ -68,6 +68,9 @@
     if (!document.getElementById("panel-" + id)) id = "overview";
     tabs.forEach(function (b) { b.setAttribute("aria-selected", b.dataset.tab === id ? "true" : "false"); });
     document.querySelectorAll(".panel").forEach(function (p) { p.hidden = p.dataset.panel !== id; });
+    // Load the embedded evidence explorer (large data) only when its tab is first opened.
+    var frame = document.getElementById("panel-" + id).querySelector("iframe[data-src]");
+    if (frame) { frame.src = frame.dataset.src; frame.removeAttribute("data-src"); }
     if (!noHash) history.replaceState(null, "", location.pathname + location.search + "#" + id);
   }
   tabs.forEach(function (b) { b.addEventListener("click", function () { showTab(b.dataset.tab); }); });

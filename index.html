@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css?v=20261014">
+  <link rel="stylesheet" href="assets/style.css?v=20261015">
   <style>html.gated body > header, html.gated body > nav, html.gated body > main, html.gated body > footer { display: none !important; } html.gated body { background: #284B96; }</style>
   <script>(function(){try{var p=new URLSearchParams(location.search).get("view");if((p==="participant"||p==="participants")&&sessionStorage.getItem("ia2026-participant-unlocked")!=="1"){document.documentElement.className+=" gated";}}catch(e){}})();</script>
 </head>
@@ -33,6 +33,7 @@
       <button role="tab" data-tab="participants">Participants</button>
       <button role="tab" data-tab="demographics">Demographics</button>
       <button role="tab" data-tab="immersive">Immersive learning</button>
+      <button role="tab" data-tab="evidence">Explore Evidence</button>
     </div>
   </nav>
 
@@ -168,6 +169,16 @@
     <section id="panel-immersive" data-panel="immersive" class="panel" role="tabpanel" hidden>
       <div id="immersive-app"></div>
     </section>
+
+    <!-- EXPLORE EVIDENCE (self-contained app in evidence/) -->
+    <section id="panel-evidence" data-panel="evidence" class="panel" role="tabpanel" hidden>
+      <div class="section-heading">
+        <h2 class="section-title flush">Explore Evidence</h2>
+        <p class="muted">Search the publication catalogue hosted with this dashboard. Filter by topic, country and publication type to find evidence relevant to your impact assessment work.</p>
+      </div>
+      <iframe class="evidence-frame" title="Explore Evidence — publication catalogue" data-src="evidence/index.html?v=20261012#/explore"></iframe>
+      <p><a href="evidence/index.html#/explore" target="_blank" rel="noopener">Open the explorer in a full window</a></p>
+    </section>
   </main>
 
   <footer class="footer">
@@ -182,7 +193,7 @@
   <script src="data/samples.js?v=20261014"></script>
   <script src="data/immersive.js?v=20261014"></script>
   <script src="assets/access.js?v=20261014"></script>
-  <script src="assets/app.js?v=20261014"></script>
+  <script src="assets/app.js?v=20261015"></script>
   <script src="assets/dossier.js?v=20261014"></script>
   <script src="assets/immersive.js?v=20261014"></script>
 </body>
