@@ -1,0 +1,622 @@
+{
+  "course": "A4019972",
+  "title": "Modern OSH Governance and Inspection in the Energy Sector",
+  "webinar": "20 October 2026",
+  "residential": "26–30 October 2026",
+  "slides": [
+    {
+      "type": "cover",
+      "title": "Modern OSH Governance and Inspection in the Energy Sector",
+      "sub": "Online onboarding and technical exchange",
+      "date": "Tuesday 20 October 2026  |  10:00–12:00 (UTC+2)",
+      "notes": "Good morning, and a very warm welcome to everyone joining us from Ukraine and from our ILO and ITCILO teams. It is a pleasure to open this learning programme, Modern OSH Governance and Inspection in the Energy Sector. We are meeting online today, and next week we will have the opportunity to continue our work together in Turin. We recognise the extraordinary responsibilities carried by colleagues working to protect people and maintain essential energy services under the difficult conditions that Ukraine continues to face. Our purpose is not to offer ready-made answers from outside. It is to create a practical space where international principles, sectoral experience and Ukrainian expertise can inform each other, and where ideas can be translated into measures that work for the people and institutions represented here. Thank you for making the time to join us."
+    },
+    {
+      "type": "run",
+      "title": "Our two hours together",
+      "items": [
+        "Welcome and opening remarks",
+        "Sectoral dynamics in energy: decent work, OSH and new technologies",
+        "International OSH principles, systems, inspection and social dialogue",
+        "Ukraine’s energy sector: worker realities, good practices and priorities",
+        "Programme onboarding, preparation for Turin and questions"
+      ],
+      "notes": "Today’s programme brings together several complementary perspectives. We begin with opening remarks from Charles Crevier at the Turin Centre and Tetyana Minenko from the ILO. Casper Edmonds will then look at the energy sector as a whole, considering what is changing, how new technologies are affecting work and why occupational safety and health must remain central to a resilient sector. Changyou Zhu will help us connect these sectoral realities to international OSH principles, rights, standards and the roles of labour inspection and social partners. We will then give the floor to colleagues from Ukraine, because the lived operational experience of energy workers is indispensable to the design of this training. We will conclude with the practical aspects of our learning journey: the residential programme, study visits, eCampus, travel and accommodation, interpretation and what we need from you before departure. Questions are welcome throughout, and we will reserve time to address practical concerns together."
+    },
+    {
+      "type": "housekeeping",
+      "title": "Participating in today’s webinar",
+      "items": [
+        [
+          "Your name",
+          "Please display your name and institution in Zoom"
+        ],
+        [
+          "Interpretation",
+          "Select your preferred audio channel where available"
+        ],
+        [
+          "Questions",
+          "Use the chat or raise your hand"
+        ],
+        [
+          "Connection",
+          "Keep your microphone muted when not speaking"
+        ]
+      ],
+      "notes": "Before we begin, a few brief practical points. Please check that your displayed name in Zoom enables us to recognise you and your institution. The session is conducted in English, with interpretation support for Ukrainian colleagues. If interpretation channels are available in your Zoom interface, please select the channel you prefer. You are very welcome to write questions or observations in the chat as the discussion unfolds, and to raise your hand when you would like to contribute. We will help manage the speaking order so that everyone has the opportunity to take part. Please keep your microphone muted while others are speaking; cameras are welcome wherever connection quality allows. If you experience a difficulty hearing the interpretation or accessing the platform, please indicate this in the chat so that our team can assist. We would like today to be a genuine exchange, rather than simply a succession of presentations."
+    },
+    {
+      "type": "speakers",
+      "title": "Welcome and opening remarks",
+      "people": [
+        [
+          "Charles Crevier",
+          "ITCILO"
+        ],
+        [
+          "Tetyana Minenko",
+          "ILO"
+        ]
+      ],
+      "notes": "It is now my pleasure to invite our colleagues to offer the opening remarks. First, Charles Crevier, from the International Training Centre of the ILO, will welcome participants on behalf of the Centre and introduce the cooperation that has made this activity possible. Charles, thank you for joining us and for your support to this programme. The floor is yours. Thank you very much, Charles. I would now like to invite Tetyana Minenko from the ILO, who has been closely engaged with this initiative and the challenges facing Ukraine’s energy workforce. Tetyana, we are very grateful for your contribution and for the perspective you bring from the country context. We look forward to your remarks."
+    },
+    {
+      "type": "speaker",
+      "title": "Sectoral dynamics in energy",
+      "sub": "Decent work, OSH and the implications of new technologies and AI",
+      "person": "Casper Edmonds",
+      "org": "ILO",
+      "topics": [
+        "Transformation of energy work and skills",
+        "Protecting workers across crisis and recovery",
+        "Digital innovation, AI and the human dimension"
+      ],
+      "notes": "Thank you for those opening reflections. We now turn to a broader sectoral perspective. Ukraine’s energy sector is addressing immediate threats to the continuity of essential services while also preparing for longer-term reconstruction and transformation. These processes raise questions not only about equipment and infrastructure, but also about the people who operate, repair and maintain these systems. New technologies can improve detection, coordination and prevention, yet their introduction must be examined alongside the organisation of work, workers’ rights, skills and the responsibilities of employers and public authorities. To help us consider these connections, I am delighted to welcome Casper Edmonds from the ILO. Casper has contributed to the ILO’s work on the energy sector in Ukraine, and his insights will help us situate OSH in the wider decent-work agenda. Casper, thank you very much. The floor is yours."
+    },
+    {
+      "type": "speaker",
+      "title": "International OSH principles and standards",
+      "sub": "From fundamental rights to effective prevention and enforcement",
+      "person": "Changyou Zhu",
+      "org": "ILO",
+      "topics": [
+        "Safe and healthy working environment: a fundamental principle and right at work",
+        "OSH management systems, risk assessment and prevention",
+        "Labour inspection, social partners, crisis and recovery"
+      ],
+      "notes": "Thank you, Casper, for that important sectoral perspective. The next question is how we turn the principles we share into institutions, systems and workplace practices capable of protecting workers in exceptionally demanding circumstances. A safe and healthy working environment is a fundamental principle and right at work. International OSH instruments, including Conventions Nos. 155 and 187, provide a framework for national policy, coordinated prevention and continuous improvement. At enterprise level, the organisation of work, risk assessment, consultation and management commitment are just as important as technical protective measures. Labour inspection and meaningful engagement with workers and employers help make those commitments operational. These principles are especially relevant where work must continue in emergency, damaged or high-risk conditions. We are very pleased to welcome Changyou Zhu from the ILO to examine these dimensions and their implications for crisis and recovery. Changyou, thank you for joining us. Over to you."
+    },
+    {
+      "type": "ukraine",
+      "title": "Ukraine’s energy sector: experience and priorities",
+      "people": [
+        [
+          "Ukrainian speaker 1",
+          "Name and institution to be confirmed"
+        ],
+        [
+          "Ukrainian speaker 2",
+          "Name and institution to be confirmed"
+        ]
+      ],
+      "topics": [
+        "Worker realities in crisis and emergency response",
+        "Good practices developed under pressure",
+        "Priorities for stronger OSH governance and prevention"
+      ],
+      "notes": "International experience is valuable only when it is tested against the situations that workers and institutions face on the ground. This is why the voices of colleagues from Ukraine are central to our webinar and to the residential week. Across energy generation, transmission, distribution, mining and rescue services, workers have had to sustain essential activities in circumstances that demand extraordinary judgement and adaptability. We would like to hear about the risks that are most difficult to manage, practices that have helped protect workers, and priorities that would make this programme most useful. The two colleagues joining us from Ukraine will bring this operational and institutional perspective. We are especially interested in what has proved feasible under pressure, where gaps persist and what lessons could support both immediate action and longer-term recovery. Thank you very much for contributing your experience. We look forward to learning from you."
+    },
+    {
+      "type": "stats",
+      "title": "A group with complementary expertise",
+      "stats": [
+        [
+          "20",
+          "participants from Ukraine"
+        ],
+        [
+          "1",
+          "ILO colleague"
+        ],
+        [
+          "Multiple",
+          "public and enterprise perspectives"
+        ]
+      ],
+      "items": [
+        "Ministry of Energy, State Labour Service and other public authorities",
+        "Electricity transmission and distribution, OSH management and industrial safety",
+        "Mining operations and specialised mine rescue services"
+      ],
+      "notes": "Before we introduce the Turin programme, it is worth reflecting on the expertise represented in this group. According to the current participant list, we are expecting twenty participants from Ukraine, together with one ILO colleague. Among you are colleagues from public authorities, national and regional energy operations, electricity transmission and distribution companies, enterprise occupational safety functions, mining operations and specialised mine rescue services. This mix is one of the most important strengths of the programme. Public authorities and inspectors bring the policy, regulatory and enforcement perspectives. Enterprises bring daily operational realities, including emergency maintenance, contractor arrangements and prevention systems. Mining and rescue colleagues bring direct experience of work in hazardous and rapidly changing environments. Rather than treating these as separate worlds, we want to create opportunities for learning across them. Everyone here has something significant to contribute; the programme is designed to make that expertise visible and productive."
+    },
+    {
+      "type": "pillars",
+      "title": "What brings us together",
+      "items": [
+        [
+          "Protecting workers",
+          "Preventing injuries and ill-health in emergency and high-risk operations"
+        ],
+        [
+          "Strengthening systems",
+          "Effective OSH management, labour inspection and cooperation"
+        ],
+        [
+          "Preparing for change",
+          "Responsible use of digital tools, AI and new technologies"
+        ]
+      ],
+      "notes": "There are three connected purposes behind this training. The first is the immediate imperative to protect workers. Prevention must remain meaningful when teams are restoring power, entering damaged sites, working underground or making safety-critical decisions under severe pressure. The second purpose is to strengthen the systems that make prevention consistent and sustainable. Technical procedures matter, but so do clear responsibilities, risk assessment, labour inspection, worker participation, training and learning from incidents. The third is to prepare for change. Ukraine’s energy system will continue to evolve through reconstruction, decentralisation and new technologies. Digital reporting, remote sensing, wearables and AI may all contribute to prevention, but their introduction also requires governance, human oversight and an understanding of emerging risks. The course brings these three purposes together and asks what they mean for the decisions you make in your own institutions."
+    },
+    {
+      "type": "timeline",
+      "title": "One programme, three moments",
+      "items": [
+        [
+          "20 OCT",
+          "Online technical exchange",
+          "International principles and Ukrainian priorities"
+        ],
+        [
+          "26–30 OCT",
+          "Residential week in Turin",
+          "Expert exchange, applied work and three study visits"
+        ],
+        [
+          "04 NOV",
+          "Online follow-up",
+          "Foresight, reflection and next steps"
+        ]
+      ],
+      "notes": "Our learning journey has three moments. Today’s online exchange sets the foundations. It brings international experience into dialogue with the Ukrainian context and gives us a shared understanding of the questions we will explore. The residential week takes place in Turin from 26 to 30 October. It combines technical sessions and applied work with three field visits, deliberately moving between the classroom and workplaces where occupational safety and health must be managed in practice. We then meet again online on 4 November. That final exchange will include strategic foresight on emerging OSH risks and a closing discussion focused on reflection and practical next steps. The aim is not to treat the residential course as an isolated event, but to encourage continued application of lessons in the institutions and workplaces represented here. The exact time-zone reference for the 4 November webinar will be reconfirmed in the course communications."
+    },
+    {
+      "type": "outcomes",
+      "title": "What we want to take home",
+      "items": [
+        "Sharper identification and assessment of high-priority energy-sector OSH risks",
+        "Stronger emergency protocols, preventive controls and PPE choices",
+        "Practical ways to improve inspection, worker participation and OSH management",
+        "Responsible applications of digital tools and AI for prevention",
+        "Concrete priorities for institutional and workplace follow-up"
+      ],
+      "notes": "By the end of the programme, we want you to have more than a collection of presentations. You should have a stronger basis for identifying the most urgent occupational risks in your area of responsibility and for assessing whether existing controls are sufficient. We will look closely at emergency repair procedures, preparedness, personal protective equipment and decision-making in high-risk environments. We will examine how management systems, labour inspection and worker participation can reinforce each other. We will also consider how digital technology and AI can help identify hazards, improve reporting and support timely decisions without diminishing human responsibility for safety. Most importantly, we will encourage you to identify realistic priorities for follow-up. These may differ between ministries, inspection bodies, electricity operators and mine rescue services. That diversity is expected and valuable. The common measure of success is whether the learning can contribute to safer work."
+    },
+    {
+      "type": "days",
+      "title": "The residential week at a glance",
+      "days": [
+        [
+          "MON 26",
+          "Crisis, recovery and risk management"
+        ],
+        [
+          "TUE 27",
+          "Prevention, AI, PPE and inspection"
+        ],
+        [
+          "WED 28",
+          "IREN: OSH in an energy company"
+        ],
+        [
+          "THU 29",
+          "Sogin: high-risk energy operations"
+        ],
+        [
+          "FRI 30",
+          "Imerys: underground work and mining"
+        ]
+      ],
+      "notes": "Here is the overall progression of the week. We begin on Monday with the realities of protecting energy workers in crisis and recovery and work through occupational safety and health management systems, risk assessment and decision-making during emergency repairs. Tuesday turns to innovation for prevention, including digital tools and AI, alongside PPE, preparedness and the role of labour inspection. We also prepare an observation framework for the study visits. Wednesday takes us to IREN, where we will consider prevention in an energy company or utility environment. Thursday focuses on Sogin and the particular demands of managing high-risk energy operations. On Friday we will visit Imerys Talc Italy for an underground mining perspective. Each of the visits has a different emphasis, but they are designed to inform a common question: what can be adapted to strengthen protection of energy-sector workers in Ukraine? Detailed session titles and contributors are provided on the following agenda slides."
+    },
+    {
+      "type": "agenda",
+      "title": "Programme agenda | Monday & Tuesday",
+      "subtitle": "26–27 October 2026",
+      "columns": [
+        {
+          "day": "MONDAY 26 OCTOBER",
+          "entries": [
+            [
+              "09:00–10:30",
+              "Opening; protecting energy workers in crisis and recovery",
+              "Tetyana Minenko · Olena Vazhynska"
+            ],
+            [
+              "11:00–12:30",
+              "Saving lives: OSH management systems and risk assessment",
+              "Riccardo Melandri"
+            ],
+            [
+              "14:00–15:15",
+              "Emergency repair protocols and safe decisions under pressure",
+              "Riccardo Melandri"
+            ],
+            [
+              "15:45–17:00",
+              "Protecting energy workers: group work",
+              "Tetyana Minenko · Olena Vazhynska"
+            ],
+            [
+              "17:15",
+              "City tour",
+              ""
+            ]
+          ]
+        },
+        {
+          "day": "TUESDAY 27 OCTOBER",
+          "entries": [
+            [
+              "09:00–10:30",
+              "Innovation for prevention: new technologies, AI and digital OSH tools",
+              "Claudio Galbiati"
+            ],
+            [
+              "11:00–12:30",
+              "OSH protocols, PPE, emergency preparedness and AI applications",
+              "Claudio Galbiati"
+            ],
+            [
+              "12:30",
+              "Group picture",
+              ""
+            ],
+            [
+              "14:00–15:15",
+              "Safeguarding worker safety: labour inspection in energy",
+              "Ahmet Dukunlu · Changyou Zhu · State Labour Service"
+            ],
+            [
+              "15:45–17:00",
+              "Preparing for site visits through an OSH and inspection perspective",
+              "Ahmet Dukunlu"
+            ]
+          ]
+        }
+      ],
+      "notes": "The programme begins at nine o’clock on Monday 26 October. Tetyana Minenko and I will open the residential week by linking Ukrainian operational realities with resilient OSH governance. Riccardo Melandri will then lead two technical sessions on management systems, risk assessment and emergency repair protocols, including the choices workers and supervisors face when decisions must be made under pressure. We end the learning day with group work on protecting energy workers in crisis and recovery, followed by an optional city tour. Tuesday begins with Claudio Galbiati on new technologies, AI and digital tools for prevention. We then consider protective equipment, emergency preparedness and applications of AI for OSH. The afternoon looks at labour inspection in the energy sector, with contributions from Ahmet Dukunlu, Changyou Zhu and the State Labour Service of Ukraine. We close by preparing the questions and observation methods that participants will use during the three visits."
+    },
+    {
+      "type": "agenda",
+      "title": "Programme agenda | Wednesday & Thursday",
+      "subtitle": "28–29 October 2026",
+      "columns": [
+        {
+          "day": "WEDNESDAY 28 OCTOBER",
+          "entries": [
+            [
+              "09:00–12:30",
+              "Study visit 1: IREN — energy company / utility OSH practice",
+              "IREN"
+            ],
+            [
+              "14:00–15:15",
+              "Modern and inclusive energy work for the future",
+              "Olena Vazhynska · Camila Pereira Rego Meireles · Casper Edmonds"
+            ],
+            [
+              "15:45–17:00",
+              "Learning from practice: participant-led debrief and transfer clinic",
+              "Casper Edmonds"
+            ]
+          ]
+        },
+        {
+          "day": "THURSDAY 29 OCTOBER",
+          "entries": [
+            [
+              "09:00–12:30",
+              "Study visit 2: Sogin S.p.A. — high-risk energy operations",
+              "Sogin S.p.A."
+            ],
+            [
+              "14:00–15:15",
+              "Underground and mining safety: critical risks and prevention",
+              "Sara Bonatto · Casper Edmonds"
+            ],
+            [
+              "15:45–17:00",
+              "Transferring lessons across high-risk and underground operations",
+              "Sara Bonatto · Casper Edmonds"
+            ],
+            [
+              "17:45",
+              "Course dinner",
+              ""
+            ]
+          ]
+        }
+      ],
+      "notes": "Wednesday and Thursday are structured around two different forms of operational observation. On Wednesday morning, our first visit takes us to IREN, an energy company setting in which we will examine how occupational safety and health is organised and how prevention is integrated into daily operations. The afternoon introduces the future of modern and inclusive energy work, with contributions from Olena Vazhynska, Camila Pereira Rego Meireles and Casper Edmonds. We then make time to discuss what we observed and what might be transferable. Thursday morning takes us to Sogin S.p.A., with a focus on high-risk energy operations. In the afternoon, Sara Bonatto and Casper Edmonds will help connect these observations with the prevention of critical risks in underground and mining environments. A further working session will consider the lessons that can be transferred across different high-risk sectors. The course dinner is scheduled for Thursday evening."
+    },
+    {
+      "type": "agenda",
+      "title": "Programme agenda | Friday & follow-up",
+      "subtitle": "30 October and 4 November 2026",
+      "columns": [
+        {
+          "day": "FRIDAY 30 OCTOBER",
+          "entries": [
+            [
+              "09:00–12:30",
+              "Study visit 3: Imerys Talc Italy S.p.A.",
+              "Underground work and mining"
+            ],
+            [
+              "Afternoon",
+              "Not specified in current draft agenda",
+              "Further details will be shared"
+            ]
+          ]
+        },
+        {
+          "day": "WEDNESDAY 4 NOVEMBER · ONLINE",
+          "entries": [
+            [
+              "10:00–12:00 (UTC+2 in draft)",
+              "Modern OSH governance in a transforming energy sector",
+              "Strategic foresight for OSH to 2050 · ILO OSHE"
+            ],
+            [
+              "Within online session",
+              "Closing workshop and residential-week debrief",
+              "ITCILO · Action planning and next steps"
+            ],
+            [
+              "",
+              "Time zone to be confirmed for the November meeting",
+              ""
+            ]
+          ]
+        }
+      ],
+      "notes": "Friday morning is dedicated to our third visit, at Imerys Talc Italy. This will allow us to examine underground operations and mining-related safety challenges directly, with particular attention to critical hazards, risk assessment, preventive controls and working conditions in complex environments. The current draft agenda does not specify a Friday afternoon session, so we will communicate any final arrangements separately rather than anticipating activities that have not yet been confirmed. Our programme concludes with an online exchange on Wednesday 4 November. The agenda includes a session on modern OSH governance and strategic foresight for the energy sector to 2050, with ILO OSHE, followed by a closing workshop, debrief and discussion of action planning and next steps. Please note that the draft labels the November session 10:00 to 12:00 UTC+2. Because Italy will be on winter time by then, we will reconfirm the precise time and time-zone reference."
+    },
+    {
+      "type": "visits",
+      "title": "Three study visits, three perspectives",
+      "sites": [
+        [
+          "IREN",
+          "ENERGY COMPANY",
+          "Safety management in utility operations, prevention and worker participation"
+        ],
+        [
+          "Sogin S.p.A.",
+          "HIGH-RISK OPERATIONS",
+          "Complex operational risks, protective systems and safety oversight"
+        ],
+        [
+          "Imerys Talc Italy",
+          "UNDERGROUND MINE",
+          "Mining hazards, controls, emergency arrangements and safety culture"
+        ]
+      ],
+      "notes": "These visits are a particularly important part of the learning design. They are not organised as general tours. Each site offers a different perspective on how high-risk work can be planned, supervised and carried out safely. At IREN, we will focus on the management of occupational safety and health in an energy company or utility environment: preventive systems, responsibilities, monitoring and worker involvement. At Sogin, our attention will turn to the requirements of high-risk energy operations and the organisational and technical arrangements needed to manage complex hazards. At Imerys Talc Italy, we will focus on underground mining conditions, critical risks, preventive engineering, preparedness and safety culture. We encourage you to compare these perspectives rather than look for a single model to copy. The value of the visits will lie in identifying which principles and practices can be adapted responsibly to different Ukrainian energy and mining workplaces."
+    },
+    {
+      "type": "safety",
+      "title": "Study visits: everything you need to know",
+      "items": [
+        [
+          "TRANSFER",
+          "Group transportation to and from the sites will be arranged."
+        ],
+        [
+          "INTERPRETATION",
+          "Interpretation support will be arranged at the sites."
+        ],
+        [
+          "PPE",
+          "Required protective equipment will be provided for the visits."
+        ],
+        [
+          "SHOE SIZE",
+          "Please enter your shoe size in the pre-course survey."
+        ]
+      ],
+      "notes": "We would like everyone to feel fully prepared for the three study visits. Transfers to and from the sites will be organised for the group, so you will not need to make your own transport arrangements for those visits. We will also arrange interpretation on site, recognising how important it is that technical explanations and safety instructions are clearly understood. The necessary personal protective equipment will be provided as part of the visits. There is one practical detail for which we need your help now: your shoe size. This is requested in the pre-course survey so that suitable protective footwear can be arranged where required. Please complete that information carefully and as soon as possible. Each host site may also have specific access and safety requirements. We will communicate those instructions in advance and ask everyone to follow the host organisation’s procedures at all times. Your safety is the first consideration throughout the visits."
+    },
+    {
+      "type": "lens",
+      "title": "What should we observe on site?",
+      "items": [
+        [
+          "Governance",
+          "Who is accountable for OSH, and how are responsibilities shared?"
+        ],
+        [
+          "Risk controls",
+          "Which critical hazards are anticipated, controlled and monitored?"
+        ],
+        [
+          "Preparedness",
+          "How are abnormal events, emergencies and rescue needs managed?"
+        ],
+        [
+          "Worker voice",
+          "How do workers contribute to risk identification and decisions?"
+        ],
+        [
+          "Learning",
+          "How are incidents, near misses and inspections translated into change?"
+        ]
+      ],
+      "notes": "Our goal during each visit is to look beyond the visible equipment and understand the prevention system around it. We will ask who holds responsibility for occupational safety and health, how managers and workers coordinate, and where inspectors and external actors fit in. We will pay attention to the way risks are identified before tasks begin, how controls are selected and checked, and how the organisation knows whether its preventive measures are working. We will also look at preparedness: what happens when normal conditions change, when equipment fails or when a worker needs to be evacuated or rescued? Worker participation matters just as much as procedures and engineering. What opportunities do workers have to raise concerns, challenge unsafe decisions or report near misses without fear? Finally, we will ask how lessons from incidents, observations and inspections feed back into improvements. We will use a common set of questions so that each of you can compare the three sites and relate their practices to your own working environment."
+    },
+    {
+      "type": "learning",
+      "title": "Learning designed for practical application",
+      "items": [
+        [
+          "Expert exchange",
+          "International OSH principles and sector-specific practice"
+        ],
+        [
+          "Applied group work",
+          "Risk assessment, protocols and protective measures"
+        ],
+        [
+          "Learning on site",
+          "Three visits with technical briefings and observation"
+        ],
+        [
+          "Transfer and reflection",
+          "Participant-led discussion of what can work in Ukraine"
+        ]
+      ],
+      "footer": "ITCILO Certificate of Participation: mandatory activities and at least 80% attendance",
+      "notes": "The residential week is designed to be active, collaborative and directly connected to professional practice. There will be technical inputs from ILO specialists and external experts, but we do not intend to spend the entire week listening to lectures. Group work will provide opportunities to examine concrete issues such as risk assessment, protective measures, emergency repair procedures, inspection and digital innovation. The study visits will allow us to observe how organisations address prevention in real operational settings. Most importantly, after each visit we will create space to discuss what participants have noticed and how those observations might be used in Ukraine. Not every measure will be transferable, and we will treat that question critically. The Information Note specifies an ITCILO Certificate of Participation for those who meet the mandatory activity requirements and attend at least eighty per cent of the sessions. We therefore encourage active participation throughout the week."
+    },
+    {
+      "type": "team",
+      "title": "Meet your ITCILO team",
+      "people": [
+        "Charles Crevier",
+        "Olena Vazhynska",
+        "Feliz Martin Daza",
+        "Paola Costantini",
+        "Viktoriia Lavrynovych"
+      ],
+      "notes": "I would also like to introduce the ITCILO team who will be accompanying you through the programme. Charles Crevier is joining us for the opening of this activity. I am Olena Vazhynska, and I look forward to working closely with you during the residential week. Our colleagues Feliz Martin Daza, Paola Costantini and Viktoriia Lavrynovych are also part of the team supporting the organisation and delivery of this learning experience. You will meet us through the different stages of the programme, including technical facilitation, the learning environment and practical arrangements. Please do not hesitate to bring questions to the team. We know that preparing for international travel and a technically intensive week requires coordination, and we want to make the process as clear and straightforward as possible. Beyond the logistics, we are looking forward to getting to know the expertise that each of you brings to Turin."
+    },
+    {
+      "type": "faculty",
+      "title": "Experts and contributors across the week",
+      "people": [
+        "Tetyana Minenko · ILO",
+        "Casper Edmonds · ILO",
+        "Changyou Zhu · ILO",
+        "Ahmet Dukunlu · ILO",
+        "Riccardo Melandri",
+        "Claudio Galbiati",
+        "Sara Bonatto",
+        "Camila Pereira Rego Meireles",
+        "State Labour Service of Ukraine",
+        "ILO OSHE"
+      ],
+      "notes": "Throughout the programme, participants will work with a range of ILO, ITCILO and external specialists whose contributions cover complementary dimensions of occupational safety and health. Tetyana Minenko, Casper Edmonds, Changyou Zhu and Ahmet Dukunlu will help connect the Ukrainian context, sectoral work, international principles and labour inspection. Riccardo Melandri will contribute technical expertise on OSH management systems, risk assessment and emergency operational decisions. Claudio Galbiati will focus on prevention, new technologies, artificial intelligence and protective measures. Sara Bonatto will bring specialist experience of mining and underground safety, while Camila Pereira Rego Meireles will contribute to the discussion of modern and inclusive energy work. Colleagues from the State Labour Service of Ukraine are included in the programme, and ILO OSHE is expected to contribute to the follow-up session on strategic foresight. The intention is to make these perspectives interact with one another and, above all, with your own experience."
+    },
+    {
+      "type": "digital",
+      "title": "Before Turin: connect to eCampus",
+      "items": [
+        [
+          "ACCESS",
+          "Use the course access instructions provided by the ITCILO team."
+        ],
+        [
+          "MATERIALS",
+          "Find the programme agenda, session resources and shared information."
+        ],
+        [
+          "SURVEY",
+          "Complete the pre-course survey — including your shoe size."
+        ],
+        [
+          "SUPPORT",
+          "Contact the team if your login or access does not work."
+        ]
+      ],
+      "notes": "Our eCampus learning environment will provide a common space for course information and materials. Please use the access instructions shared by the ITCILO team, and make sure that you can enter the course area before you travel. This is where we will make available the relevant documents and learning resources for the week, as well as practical communications and, where appropriate, follow-up materials. We particularly ask you to complete the pre-course survey. It will help us understand your experience, expectations and any practical requirements that need to be anticipated. As mentioned, the survey also includes a request for shoe size, which is essential for organising protective equipment for the site visits. If you have any difficulty with your account, password or access to the learning materials, please contact the team promptly so that we can resolve it before arrival. The specific eCampus and survey links will be circulated in the course communications."
+    },
+    {
+      "type": "travel",
+      "title": "Travel and arrival in Turin",
+      "items": [
+        [
+          "ITCILO campus",
+          "Viale Maestri del Lavoro, 10 · 10127 Turin, Italy"
+        ],
+        [
+          "Travel details",
+          "Follow your individual itinerary and instructions shared by the team."
+        ],
+        [
+          "Accommodation",
+          "Refer to your confirmed accommodation and arrival arrangements."
+        ],
+        [
+          "Support",
+          "Contact the course team if your plans change or a problem arises."
+        ]
+      ],
+      "notes": "We are very much looking forward to welcoming you to Turin. The International Training Centre of the ILO is located at Viale Maestri del Lavoro 10, in the southern part of the city. Please review the travel details and accommodation arrangements that are being communicated to you individually, and ensure that your travel documentation and itinerary are in order. If a flight or other journey segment changes, please inform the designated contact without delay. It is especially important that the team knows about significant changes to arrival plans, because these can affect accommodation and the coordination of the programme. The campus offers a range of services for participants, and its reception is staffed around the clock. We will share any additional information on arrival, check-in and local arrangements through the normal participant communications. Today we can take practical questions, and we will follow up individually on matters that depend on each participant’s itinerary."
+    },
+    {
+      "type": "campus",
+      "title": "Working and learning together on campus",
+      "items": [
+        [
+          "LANGUAGES",
+          "English with simultaneous interpretation into Ukrainian"
+        ],
+        [
+          "LEARNING ENVIRONMENT",
+          "Classroom work, discussions, group exercises and site visits"
+        ],
+        [
+          "CAMPUS SERVICES",
+          "Accommodation, dining and other facilities on campus"
+        ],
+        [
+          "STUDY VISITS",
+          "Transport, interpretation and protective equipment arranged"
+        ]
+      ],
+      "notes": "During the residential week, the programme will be conducted in English with simultaneous interpretation into Ukrainian. We want participants to be able to engage fully in technical discussions, ask questions and share their own experience. Please let us know if you encounter any difficulty following the interpretation, particularly during the visits, where instructions must be absolutely clear. The ITCILO campus provides a concentrated learning environment with training rooms and services for participants, including accommodation and dining facilities. Our week will combine classroom work with field activities, so the rhythm of the programme will change from day to day. Please consult the timetable each evening and pay particular attention to instructions for departure times and meeting points for the visits. The team will organise transfers and the necessary interpretation and PPE for those activities. We encourage you to use the time together to exchange ideas with colleagues from other organisations, not only during formal sessions but also through the informal conversations that make residential learning valuable."
+    },
+    {
+      "type": "checklist",
+      "title": "Your pre-departure checklist",
+      "items": [
+        "Check your travel documents, itinerary and accommodation information",
+        "Log into eCampus and review the course communications",
+        "Complete the pre-course survey — including your shoe size",
+        "Bring comfortable clothing appropriate for Turin in late October",
+        "Review the agenda and consider one OSH challenge to discuss",
+        "Alert the team to any accessibility or practical requirement"
+      ],
+      "notes": "Before we finish, I would like to leave everyone with a short preparation checklist. First, please review your travel documentation and confirmed itinerary, together with any accommodation information you have received. Second, make sure you can access eCampus and read the course messages. Third, and particularly important for the visits, complete the pre-course survey and enter your shoe size accurately. Fourth, plan for a week that will include classroom work as well as industrial and underground site visits. Comfortable clothing for late October in Turin will be useful, and the team will explain any specific site requirements. Please follow the PPE instructions provided rather than bringing equipment that may not meet host-site specifications. Finally, take a moment to think about one real occupational safety and health challenge you would like to explore during the week. This might relate to emergency repair, inspection, worker participation, rescue coordination, psychosocial pressures or the responsible use of technology. We want your experience to help shape the exchange."
+    },
+    {
+      "type": "follow",
+      "title": "After Turin: reflection and next steps",
+      "items": [
+        [
+          "04 NOVEMBER",
+          "Online follow-up session"
+        ],
+        [
+          "STRATEGIC FORESIGHT",
+          "Emerging OSH risks and the transforming energy sector to 2050"
+        ],
+        [
+          "CLOSING WORKSHOP",
+          "Debrief, practical priorities and action planning"
+        ]
+      ],
+      "notes": "The programme does not end when we leave the campus. On Wednesday 4 November, we are scheduled to meet online again for a follow-up exchange. We will look ahead at how the energy sector is changing and at the occupational safety and health implications of technological and organisational developments, drawing on a contribution from ILO OSHE on strategic foresight to 2050. We will also return to the experiences of the residential week: what stood out during the technical sessions and site visits, which ideas seem most relevant for participants’ institutions, and what practical next steps could be taken. We encourage you to keep notes throughout the course, particularly on measures you might wish to discuss with colleagues at home. The follow-up is an opportunity to move from observation to a considered plan for application. The precise time-zone reference for this November online session will be confirmed in advance."
+    },
+    {
+      "type": "questions",
+      "title": "Questions and practical clarifications",
+      "items": [
+        "Programme and learning activities",
+        "eCampus and the pre-course survey",
+        "Travel, accommodation and arrival",
+        "Interpretation, site visits and safety arrangements"
+      ],
+      "notes": "We have now covered the main elements of our learning journey and the practical preparations for Turin. I would like to open the floor for questions. These can relate to the programme itself, the study visits, the learning environment, the pre-course survey, or your travel and accommodation arrangements. Some matters may be personal to an individual itinerary, in which case the team can follow up directly after the webinar. For anything connected with site access, interpretation or protective equipment, we would particularly welcome questions now so that we can identify any concern before the week begins. We also welcome suggestions about the topics or operational challenges you would most like to examine. Thank you for helping us ensure that the programme is useful, inclusive and responsive to the realities of your work."
+    },
+    {
+      "type": "end",
+      "title": "We look forward to welcoming you to Turin",
+      "sub": "26–30 October 2026 · International Training Centre of the ILO",
+      "notes": "As we close, I would like to thank our opening speakers, our ILO specialists and our colleagues from Ukraine for contributing to today’s discussion. Above all, thank you to every participant for the work you are doing and for the professional experience you will bring to the programme. We recognise that, in the present circumstances, taking time away from demanding responsibilities is not always easy. We will make every effort to ensure that the week is focused, practical and worth that investment. Please complete the pre-course survey, check your eCampus access and consult the travel information shared with you. The ITCILO team is here to assist with any outstanding preparations. We look forward to welcoming you to Turin and to working together on stronger occupational safety and health governance, more effective prevention and safer conditions for Ukraine’s energy workforce. Thank you, and see you soon."
+    }
+  ]
+}
