@@ -15,6 +15,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Check out branch
         uses: actions/checkout@v4
@@ -34,22 +35,30 @@ jobs:
           cd deck-build
           npm install
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libreoffice-impress poppler-utils fonts-noto-core fonts-noto-extra
+          sudo apt-get install -y --no-install-recommends libreoffice-impress poppler-utils fonts-noto-core fonts-noto-extra file
 
       - name: Download official logo and licensed photographs
+        shell: bash
         run: |
+          set +e
           mkdir -p deck-build/assets
-          curl -L --retry 3 -A 'Mozilla/5.0' -o deck-build/assets/itcilo_logo.png 'https://extranet.itcilo.org/promotionbanners/itcilo_logo_maled.png' || true
-          if ! file deck-build/assets/itcilo_logo.png | grep -qi 'image'; then
-            curl -L --retry 3 -A 'Mozilla/5.0' -o deck-build/assets/itcilo_logo.png 'https://extranet.itcilo.org/promotionbanners/itcilo_logo_maled.png/@@images/image' || true
-          fi
-          curl -L --retry 3 -A 'Mozilla/5.0' -o deck-build/assets/cover_workers_ukraine.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Wind_Turbine_with_Workers_-_Boryspil_-_Ukraine_(43478128644).jpg'
-          curl -L --retry 3 -A 'Mozilla/5.0' -o deck-build/assets/renewable_grid.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Renewable_Energy_on_the_Grid.jpg'
-          curl -L --retry 3 -A 'Mozilla/5.0' -o deck-build/assets/solar_workers.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Technicians_working_on_a_solar_panel_installation_(9229).jpg'
-          curl -L --retry 3 -A 'Mozilla/5.0' -o deck-build/assets/pylon_workers.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Maintenance_workers_on_electricity_pylon.jpg'
-          curl -L --retry 3 -A 'Mozilla/5.0' -o deck-build/assets/repairs.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Transmission_system_repairs_underway,_Oct._3_(37445616056).jpg'
-          curl -L --retry 3 -A 'Mozilla/5.0' -o deck-build/assets/substation.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Electrical_Substation.JPG'
-          file deck-build/assets/*
+          get_img() {
+            out="$1"; url="$2"
+            curl -fL --retry 2 --retry-delay 1 --connect-timeout 7 --max-time 35 -A 'Mozilla/5.0' -o "$out" "$url"
+            if [ $? -ne 0 ] || ! file --mime-type "$out" 2>/dev/null | grep -q 'image/'; then
+              rm -f "$out"
+              echo "Optional image unavailable: $out"
+            fi
+          }
+          get_img deck-build/assets/itcilo_logo.png 'https://extranet.itcilo.org/promotionbanners/itcilo_logo_maled.png/@@images/image'
+          get_img deck-build/assets/cover_workers_ukraine.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Wind_Turbine_with_Workers_-_Boryspil_-_Ukraine_(43478128644).jpg'
+          get_img deck-build/assets/renewable_grid.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Renewable_Energy_on_the_Grid.jpg'
+          get_img deck-build/assets/solar_workers.jpg 'https://images.pexels.com/photos/8853507/pexels-photo-8853507.jpeg?auto=compress&cs=tinysrgb&w=1600'
+          get_img deck-build/assets/pylon_workers.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Maintenance_workers_on_electricity_pylon.jpg'
+          get_img deck-build/assets/repairs.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Transmission_system_repairs_underway,_Oct._3_(37445616056).jpg'
+          get_img deck-build/assets/substation.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Electrical_Substation.JPG'
+          ls -lh deck-build/assets || true
+          exit 0
 
       - name: Generate PowerPoint
         run: |
@@ -67,8 +76,10 @@ jobs:
               assert '[Content_Types].xml' in names
               assert 'ppt/presentation.xml' in names
               slides=[n for n in names if n.startswith('ppt/slides/slide') and n.endswith('.xml')]
+              notes=[n for n in names if n.startswith('ppt/notesSlides/notesSlide') and n.endswith('.xml')]
               assert len(slides)==31, len(slides)
-          print('PPTX package valid with 31 slides')
+              assert len(notes)>=25, len(notes)
+          print(f'PPTX package valid with {len(slides)} slides and {len(notes)} notes pages')
           PY
 
       - name: Render with LibreOffice
@@ -77,6 +88,16 @@ jobs:
           libreoffice --headless --convert-to pdf --outdir deck-build/rendered deck-build/Modern_and_Inclusive_Energy_Work_for_the_Future.pptx
           test -s deck-build/rendered/Modern_and_Inclusive_Energy_Work_for_the_Future.pdf
           pdfinfo deck-build/rendered/Modern_and_Inclusive_Energy_Work_for_the_Future.pdf | grep Pages
+
+      - name: Upload presentation artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: modern-inclusive-energy-work-deck
+          path: |
+            deck-build/Modern_and_Inclusive_Energy_Work_for_the_Future.pptx
+            deck-build/rendered/Modern_and_Inclusive_Energy_Work_for_the_Future.pdf
+          if-no-files-found: error
+          retention-days: 7
 
       - name: Commit generated presentation
         run: |
