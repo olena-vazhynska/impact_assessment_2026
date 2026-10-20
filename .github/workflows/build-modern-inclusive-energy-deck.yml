@@ -1,0 +1,91 @@
+name: Build modern inclusive energy deck
+
+on:
+  push:
+    branches:
+      - chatgpt-modern-energy-deck
+    paths:
+      - 'deck-build/**'
+      - '.github/workflows/build-modern-inclusive-energy-deck.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: chatgpt-modern-energy-deck
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: deck-build/package.json
+
+      - name: Install dependencies and rendering tools
+        run: |
+          cd deck-build
+          npm install
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libreoffice-impress poppler-utils fonts-noto-core fonts-noto-extra
+
+      - name: Download official logo and licensed photographs
+        run: |
+          mkdir -p deck-build/assets
+          curl -L --retry 3 -A 'Mozilla/5.0' -o deck-build/assets/itcilo_logo.png 'https://extranet.itcilo.org/promotionbanners/itcilo_logo_maled.png' || true
+          if ! file deck-build/assets/itcilo_logo.png | grep -qi 'image'; then
+            curl -L --retry 3 -A 'Mozilla/5.0' -o deck-build/assets/itcilo_logo.png 'https://extranet.itcilo.org/promotionbanners/itcilo_logo_maled.png/@@images/image' || true
+          fi
+          curl -L --retry 3 -A 'Mozilla/5.0' -o deck-build/assets/cover_workers_ukraine.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Wind_Turbine_with_Workers_-_Boryspil_-_Ukraine_(43478128644).jpg'
+          curl -L --retry 3 -A 'Mozilla/5.0' -o deck-build/assets/renewable_grid.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Renewable_Energy_on_the_Grid.jpg'
+          curl -L --retry 3 -A 'Mozilla/5.0' -o deck-build/assets/solar_workers.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Technicians_working_on_a_solar_panel_installation_(9229).jpg'
+          curl -L --retry 3 -A 'Mozilla/5.0' -o deck-build/assets/pylon_workers.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Maintenance_workers_on_electricity_pylon.jpg'
+          curl -L --retry 3 -A 'Mozilla/5.0' -o deck-build/assets/repairs.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Transmission_system_repairs_underway,_Oct._3_(37445616056).jpg'
+          curl -L --retry 3 -A 'Mozilla/5.0' -o deck-build/assets/substation.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Electrical_Substation.JPG'
+          file deck-build/assets/*
+
+      - name: Generate PowerPoint
+        run: |
+          cd deck-build
+          node build_deck.js
+          test -s Modern_and_Inclusive_Energy_Work_for_the_Future.pptx
+
+      - name: Validate PowerPoint package
+        run: |
+          python - <<'PY'
+          import zipfile
+          p='deck-build/Modern_and_Inclusive_Energy_Work_for_the_Future.pptx'
+          with zipfile.ZipFile(p) as z:
+              names=set(z.namelist())
+              assert '[Content_Types].xml' in names
+              assert 'ppt/presentation.xml' in names
+              slides=[n for n in names if n.startswith('ppt/slides/slide') and n.endswith('.xml')]
+              assert len(slides)==31, len(slides)
+          print('PPTX package valid with 31 slides')
+          PY
+
+      - name: Render with LibreOffice
+        run: |
+          mkdir -p deck-build/rendered
+          libreoffice --headless --convert-to pdf --outdir deck-build/rendered deck-build/Modern_and_Inclusive_Energy_Work_for_the_Future.pptx
+          test -s deck-build/rendered/Modern_and_Inclusive_Energy_Work_for_the_Future.pdf
+          pdfinfo deck-build/rendered/Modern_and_Inclusive_Energy_Work_for_the_Future.pdf | grep Pages
+
+      - name: Commit generated presentation
+        run: |
+          git config user.name 'ChatGPT Deck Builder'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add deck-build/Modern_and_Inclusive_Energy_Work_for_the_Future.pptx
+          if git diff --cached --quiet; then
+            echo 'No generated-file change to commit.'
+          else
+            git commit -m 'Add modern and inclusive energy work slide deck [skip ci]'
+            git push origin chatgpt-modern-energy-deck
+          fi
