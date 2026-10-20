@@ -1,0 +1,10 @@
+{
+  "name": "modern-inclusive-energy-deck",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Builds the ITCILO slide deck Modern and inclusive energy work for the future",
+  "dependencies": {
+    "image-size": "^1.1.1",
+    "pptxgenjs": "^3.12.0"
+  }
+}
