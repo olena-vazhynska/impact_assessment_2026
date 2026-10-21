@@ -64,7 +64,7 @@ jobs:
       - name: Generate revised PowerPoint
         run: |
           cd deck-build
-          node build_revised.js
+          node build_deck.js
           test -s Modern_and_Inclusive_Energy_Work_for_the_Future_REVISED.pptx
 
       - name: Validate PowerPoint package
