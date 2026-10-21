@@ -100,6 +100,17 @@ jobs:
           if-no-files-found: error
           retention-days: 7
 
+      - name: Publish direct-download release asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG='revised-energy-deck'
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" deck-build/Modern_and_Inclusive_Energy_Work_for_the_Future_REVISED.pptx --clobber
+          else
+            gh release create "$TAG" deck-build/Modern_and_Inclusive_Energy_Work_for_the_Future_REVISED.pptx --target chatgpt-modern-energy-deck --title 'Revised gender-responsive OSH energy deck' --notes 'Revised ITCILO presentation on modern and inclusive energy work, gender-responsive OSH, psychosocial risks, violence and harassment.'
+          fi
+
       - name: Commit revised presentation
         run: |
           git config user.name 'ChatGPT Deck Builder'
