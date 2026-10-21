@@ -1,4 +1,4 @@
-name: Build modern inclusive energy deck
+name: Build revised gender-responsive OSH energy deck
 
 on:
   push:
@@ -8,6 +8,10 @@ on:
       - 'deck-build/**'
       - '.github/workflows/build-modern-inclusive-energy-deck.yml'
   workflow_dispatch:
+
+concurrency:
+  group: revised-energy-deck
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -44,7 +48,7 @@ jobs:
           mkdir -p deck-build/assets
           get_img() {
             out="$1"; url="$2"
-            curl -fL --retry 2 --retry-delay 1 --connect-timeout 7 --max-time 35 -A 'Mozilla/5.0' -o "$out" "$url"
+            curl -fL --retry 2 --retry-delay 1 --connect-timeout 7 --max-time 25 -A 'Mozilla/5.0' -o "$out" "$url"
             if [ $? -ne 0 ] || ! file --mime-type "$out" 2>/dev/null | grep -q 'image/'; then
               rm -f "$out"
               echo "Optional image unavailable: $out"
@@ -52,61 +56,58 @@ jobs:
           }
           get_img deck-build/assets/itcilo_logo.png 'https://extranet.itcilo.org/promotionbanners/itcilo_logo_maled.png/@@images/image'
           get_img deck-build/assets/cover_workers_ukraine.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Wind_Turbine_with_Workers_-_Boryspil_-_Ukraine_(43478128644).jpg'
-          get_img deck-build/assets/renewable_grid.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Renewable_Energy_on_the_Grid.jpg'
           get_img deck-build/assets/solar_workers.jpg 'https://images.pexels.com/photos/8853507/pexels-photo-8853507.jpeg?auto=compress&cs=tinysrgb&w=1600'
-          get_img deck-build/assets/pylon_workers.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Maintenance_workers_on_electricity_pylon.jpg'
           get_img deck-build/assets/repairs.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Transmission_system_repairs_underway,_Oct._3_(37445616056).jpg'
-          get_img deck-build/assets/substation.jpg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Electrical_Substation.JPG'
           ls -lh deck-build/assets || true
           exit 0
 
-      - name: Generate PowerPoint
+      - name: Generate revised PowerPoint
         run: |
           cd deck-build
-          node build_deck.js
-          test -s Modern_and_Inclusive_Energy_Work_for_the_Future.pptx
+          node build_revised.js
+          test -s Modern_and_Inclusive_Energy_Work_for_the_Future_REVISED.pptx
 
       - name: Validate PowerPoint package
         run: |
           python - <<'PY'
           import zipfile
-          p='deck-build/Modern_and_Inclusive_Energy_Work_for_the_Future.pptx'
+          p='deck-build/Modern_and_Inclusive_Energy_Work_for_the_Future_REVISED.pptx'
           with zipfile.ZipFile(p) as z:
               names=set(z.namelist())
               assert '[Content_Types].xml' in names
               assert 'ppt/presentation.xml' in names
               slides=[n for n in names if n.startswith('ppt/slides/slide') and n.endswith('.xml')]
               notes=[n for n in names if n.startswith('ppt/notesSlides/notesSlide') and n.endswith('.xml')]
-              assert len(slides)==31, len(slides)
-              assert len(notes)>=25, len(notes)
+              assert len(slides)==24, len(slides)
+              assert len(notes)==24, len(notes)
           print(f'PPTX package valid with {len(slides)} slides and {len(notes)} notes pages')
           PY
 
       - name: Render with LibreOffice
         run: |
-          mkdir -p deck-build/rendered
-          libreoffice --headless --convert-to pdf --outdir deck-build/rendered deck-build/Modern_and_Inclusive_Energy_Work_for_the_Future.pptx
-          test -s deck-build/rendered/Modern_and_Inclusive_Energy_Work_for_the_Future.pdf
-          pdfinfo deck-build/rendered/Modern_and_Inclusive_Energy_Work_for_the_Future.pdf | grep Pages
+          mkdir -p deck-build/rendered-revised
+          libreoffice --headless --convert-to pdf --outdir deck-build/rendered-revised deck-build/Modern_and_Inclusive_Energy_Work_for_the_Future_REVISED.pptx
+          test -s deck-build/rendered-revised/Modern_and_Inclusive_Energy_Work_for_the_Future_REVISED.pdf
+          pdfinfo deck-build/rendered-revised/Modern_and_Inclusive_Energy_Work_for_the_Future_REVISED.pdf | grep 'Pages: *24'
 
-      - name: Upload presentation artifact
+      - name: Upload revised presentation artifact
         uses: actions/upload-artifact@v4
         with:
-          name: modern-inclusive-energy-work-deck
+          name: revised-gender-responsive-osh-energy-deck
           path: |
-            deck-build/Modern_and_Inclusive_Energy_Work_for_the_Future.pptx
-            deck-build/rendered/Modern_and_Inclusive_Energy_Work_for_the_Future.pdf
+            deck-build/Modern_and_Inclusive_Energy_Work_for_the_Future_REVISED.pptx
+            deck-build/rendered-revised/Modern_and_Inclusive_Energy_Work_for_the_Future_REVISED.pdf
           if-no-files-found: error
           retention-days: 7
 
-      - name: Commit generated presentation
+      - name: Commit revised presentation
         run: |
           git config user.name 'ChatGPT Deck Builder'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add deck-build/Modern_and_Inclusive_Energy_Work_for_the_Future.pptx
+          git add deck-build/Modern_and_Inclusive_Energy_Work_for_the_Future_REVISED.pptx
           if git diff --cached --quiet; then
             echo 'No generated-file change to commit.'
           else
-            git commit -m 'Add modern and inclusive energy work slide deck [skip ci]'
+            git commit -m 'Add revised gender-responsive OSH energy deck [skip ci]'
             git push origin chatgpt-modern-energy-deck
           fi
