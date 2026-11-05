@@ -1,12 +1,13 @@
-/* Participant view: a shareable, password-gated link (?view=participant) that
- * hides the admin-only Evidence dossier and Resources tabs.
+/* Participant view: a shareable, password-gated link (?view=participant).
+ *
+ * Every tab is available in both views. The Applied exercise, Resources and
+ * Immersive learning tabs used to be stripped from the participant view; they
+ * are now shown, so the two views differ only in the password prompt and the
+ * page title.
  *
  * Note: this is a static site, so this gate is light deterrence, not real
- * security — anyone can read the data files directly or use the plain (admin)
- * URL. Keep the admin URL private; use the eCampus for anything confidential.
- *
- * Runs before app.js so the hidden tabs/panels are removed before the app
- * builds its tab list.
+ * security — anyone can read the data files directly or use the plain URL.
+ * Use the eCampus for anything confidential.
  */
 (function () {
   "use strict";
@@ -14,13 +15,6 @@
   var mode = params.get("view");
   if (mode !== "participant" && mode !== "participants") return;
 
-  // Remove the admin-only tabs and their panels.
-  ["dossier", "resources", "immersive"].forEach(function (t) {
-    var btn = document.querySelector('.tabs button[data-tab="' + t + '"]');
-    if (btn) btn.remove();
-    var panel = document.getElementById("panel-" + t);
-    if (panel) panel.remove();
-  });
   document.title = "Impact Assessment 2026 — Participant view";
 
   var KEY = "ia2026-participant-unlocked";

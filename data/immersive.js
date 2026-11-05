@@ -1,7 +1,7 @@
 // Immersive learning — each participant's individual journey through the
 // integrated exercise (the Country Evidence Dossier), as a mini dashboard that
-// refreshes every week from their submissions. ADMIN ONLY (hidden from the
-// participant view until the team decides to open it).
+// refreshes every week from their submissions. Visible in both the plain and
+// the participant view.
 //
 // HOW THE WEEKLY REFRESH WORKS
 // ----------------------------

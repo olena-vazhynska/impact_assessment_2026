@@ -1,7 +1,8 @@
 /* Immersive learning — a mini dashboard for each participant's journey through
  * the integrated exercise (the Country Evidence Dossier). Pick a name from the
  * dropdown to see that person's learning path and their Evidence Map, which
- * fills in week by week from their submissions. Admin only. Read-only.
+ * fills in week by week from their submissions. Read-only, and visible in
+ * both the plain and the participant view.
  *
  * Reads window.IMMERSIVE (data/immersive.js) and, for the worked example, the
  * Amrosea dataset in window.SAMPLE_RECORDS (data/samples.js).
@@ -295,9 +296,9 @@
       for (var k in j) if (j[k] && j[k].status && j[k].status !== "not_started") chapters++;
     });
     MOUNT.innerHTML =
-      '<div class="section-heading"><p class="eyebrow">08 · Facilitator</p>' +
+      '<div class="section-heading"><p class="eyebrow">08 · The cohort</p>' +
         '<h2 class="section-title flush">Immersive learning</h2>' +
-        '<p class="muted">Each participant\'s journey through the integrated exercise, as a mini dashboard that fills in week by week. <b>Admin only.</b> ' + weekLine + "</p></div>" +
+        '<p class="muted">Each participant\'s journey through the integrated exercise, as a mini dashboard that fills in week by week. Read-only. ' + weekLine + "</p></div>" +
       '<p class="im-cohort-line">' + D.participants.length + " participants · " + Object.keys(countries).length +
         " countries · Week " + D.currentWeek + " · " +
         (D.currentWeek === 0
