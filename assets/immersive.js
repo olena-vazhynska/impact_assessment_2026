@@ -57,9 +57,22 @@
       isExample: false,
       name: p.name, who: p.role, organisation: p.organisation,
       country: p.country, region: p.region,
-      focus: null, minister_question: "", hunch: "", headline: "",
-      journey: {}, logbook: [], cells: []
+      focus: p.focus || null,
+      minister_question: p.minister_question || "",
+      hunch: p.hunch || "",
+      headline: p.headline || "",
+      journey: p.journey || {},
+      logbook: p.logbook || [],
+      cells: p.cells || []
     };
+  }
+
+  // A participant has started once any journey step is past "not_started".
+  function hasStarted(p) {
+    var j = p && p.journey;
+    if (!j) return false;
+    for (var k in j) if (j[k] && j[k].status && j[k].status !== "not_started") return true;
+    return false;
   }
 
   function cell(cells, level, method) { for (var i = 0; i < cells.length; i++) if (cells[i].level === level && cells[i].method === method) return cells[i]; return null; }
@@ -172,14 +185,19 @@
     var m = model(value);
     var pct = journeyProgress(m);
     var latestConf = m.logbook.length ? m.logbook[m.logbook.length - 1].confidence : null;
+    var started = m.isExample || hasStarted(m);
     var statusChip = m.isExample
       ? '<span class="im-chip im-chip-ex">Worked example · illustrative</span>'
       : (D.currentWeek === 0
           ? '<span class="im-chip im-chip-wait">Not started — opens Week 1</span>'
-          : '<span class="im-chip">Week ' + D.currentWeek + " of 7</span>");
+          : started
+            ? '<span class="im-chip">Week ' + D.currentWeek + " of 7</span>"
+            : '<span class="im-chip im-chip-wait">Nothing submitted yet</span>');
 
     var focus = m.focus || {};
-    var placeholder = '<span class="muted">To be declared — Week 1 (Country Passport)</span>';
+    var placeholder = started
+      ? '<span class="muted">Not stated in the submitted chapters</span>'
+      : '<span class="muted">To be declared — Week 1 (Country Passport)</span>';
     var factRows = [
       ["Focus country", m.country ? esc(m.country) : placeholder],
       ["Anchor scheme", focus.anchor_scheme ? esc(focus.anchor_scheme) : placeholder],
@@ -191,7 +209,8 @@
       ? '<p class="im-mq"><span class="eyebrow">Minister\'s Question</span>' + esc(m.minister_question) + "</p>" +
         (m.hunch ? '<p class="im-mq"><span class="eyebrow">Week 1 hunch</span>' + esc(m.hunch) + "</p>" : "") +
         (m.headline ? '<p class="im-mq"><span class="eyebrow">Headline indicator</span>' + esc(m.headline) + "</p>" : "")
-      : '<p class="im-mq"><span class="eyebrow">Minister\'s Question</span><span class="muted">To be declared — Week 1, Forum 1</span></p>' +
+      : '<p class="im-mq"><span class="eyebrow">Minister\'s Question</span><span class="muted">' +
+          (D.currentWeek === 0 ? "To be declared — Week 1, Forum 1" : "No chapter submitted") + "</span></p>" +
         '<p class="muted">The focus scheme, the Minister\'s Question and the first hunch are set by the participant in Week 1, then sharpened each week.</p>';
 
     return (
@@ -242,14 +261,22 @@
     var weekLine = D.currentWeek === 0
       ? "No submissions yet — dashboards open after the Week 1 forum. Updated " + fmtDate(D.updated) + "."
       : "Week " + D.currentWeek + " of 7 · updated " + fmtDate(D.updated) + " · refreshes weekly from submissions.";
-    var countries = {};
-    D.participants.forEach(function (p) { countries[p.country] = 1; });
+    var countries = {}, active = 0, chapters = 0;
+    D.participants.forEach(function (p) {
+      countries[p.country] = 1;
+      if (hasStarted(p)) active++;
+      var j = p.journey || {};
+      for (var k in j) if (j[k] && j[k].status && j[k].status !== "not_started") chapters++;
+    });
     MOUNT.innerHTML =
       '<div class="section-heading"><p class="eyebrow">08 · Facilitator</p>' +
         '<h2 class="section-title flush">Immersive learning</h2>' +
         '<p class="muted">Each participant\'s journey through the integrated exercise, as a mini dashboard that fills in week by week. <b>Admin only.</b> ' + weekLine + "</p></div>" +
       '<p class="im-cohort-line">' + D.participants.length + " participants · " + Object.keys(countries).length +
-        " countries · Week " + D.currentWeek + " · " + (D.currentWeek === 0 ? "0 submissions so far" : "refreshing weekly") + "</p>" +
+        " countries · Week " + D.currentWeek + " · " +
+        (D.currentWeek === 0
+          ? "0 submissions so far"
+          : chapters + " chapters in from " + active + " participants") + "</p>" +
       '<div class="im-picker">' +
         '<button class="btn ghost im-nav" data-im-nav="-1" aria-label="Previous participant">&larr;</button>' +
         '<label class="im-select"><span class="visually-hidden">Choose a participant</span>' +
