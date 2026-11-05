@@ -624,6 +624,8 @@ address { font-style: normal; }
 .im-log th, .im-log td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; font-size: 13px; }
 .im-log thead th { background: var(--surface-2); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; }
 .im-conf { font-weight: 700; color: var(--primary); white-space: nowrap; }
+.im-log-missing td { background: var(--surface-2); font-style: italic; }
+.im-log-missing .im-conf { font-weight: 400; color: var(--muted); }
 .im-empty { margin-top: 12px; }
 
 /* Participant access gate */

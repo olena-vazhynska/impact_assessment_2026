@@ -171,12 +171,35 @@
   }
 
   /* ---------- logbook ---------- */
+  // Weeks whose chapter was submitted but whose Logbook row was left blank get
+  // a "Not completed" row, so a missing row reads as missing rather than as a
+  // week that never happened.
+  function logbookRows(m) {
+    var byWeek = {}, weeks = [];
+    (m.logbook || []).forEach(function (l) { byWeek[l.wk] = l; });
+    D.journey.forEach(function (s) {
+      var st = (m.journey[s.ch] || {}).status;
+      if (st && st !== "not_started") weeks.push(s.week);
+    });
+    (m.logbook || []).forEach(function (l) { if (weeks.indexOf(l.wk) === -1) weeks.push(l.wk); });
+    weeks.sort(function (a, b) { return a - b; });
+    return weeks.map(function (w) { return byWeek[w] || { wk: w, missing: true }; });
+  }
+
   function logbook(m) {
-    if (!m.logbook.length) {
+    var rows = logbookRows(m);
+    if (!rows.length) {
       return '<div class="empty im-empty">No logbook entries yet. Each week, the Evidence Lead records their confidence (1–5), what moved it and what they changed.</div>';
     }
+    var missing = '<span class="muted">Not completed</span>';
     return '<div class="dos-map-wrap"><table class="im-log"><thead><tr><th>Wk</th><th>Conf.</th><th>What moved it</th><th>Feedback from</th><th>What I changed</th></tr></thead><tbody>' +
-      m.logbook.map(function (l) { return "<tr><td>W" + l.wk + '</td><td class="im-conf">' + l.confidence + "/5</td><td>" + esc(l.moved) + "</td><td>" + esc(l.feedback_from) + "</td><td>" + esc(l.changed) + "</td></tr>"; }).join("") +
+      rows.map(function (l) {
+        return "<tr" + (l.missing ? ' class="im-log-missing"' : "") + "><td>W" + l.wk + '</td>' +
+          '<td class="im-conf">' + (l.missing ? missing : l.confidence + "/5") + "</td>" +
+          "<td>" + (l.missing ? missing : esc(l.moved)) + "</td>" +
+          "<td>" + (l.missing ? missing : esc(l.feedback_from)) + "</td>" +
+          "<td>" + (l.missing ? missing : esc(l.changed)) + "</td></tr>";
+      }).join("") +
       "</tbody></table></div>";
   }
 
@@ -195,8 +218,11 @@
             : '<span class="im-chip im-chip-wait">Nothing submitted yet</span>');
 
     var focus = m.focus || {};
+    // Once a chapter is in, an empty template field is an omission, not a
+    // field whose turn has not come — say so rather than leaving it blank.
+    var notDone = '<span class="muted">Not completed</span>';
     var placeholder = started
-      ? '<span class="muted">Not stated in the submitted chapters</span>'
+      ? notDone
       : '<span class="muted">To be declared — Week 1 (Country Passport)</span>';
     var factRows = [
       ["Focus country", m.country ? esc(m.country) : placeholder],
@@ -206,9 +232,9 @@
     ];
 
     var threads = (m.minister_question || m.hunch || m.headline)
-      ? '<p class="im-mq"><span class="eyebrow">Minister\'s Question</span>' + esc(m.minister_question) + "</p>" +
-        (m.hunch ? '<p class="im-mq"><span class="eyebrow">Week 1 hunch</span>' + esc(m.hunch) + "</p>" : "") +
-        (m.headline ? '<p class="im-mq"><span class="eyebrow">Headline indicator</span>' + esc(m.headline) + "</p>" : "")
+      ? '<p class="im-mq"><span class="eyebrow">Minister\'s Question</span>' + (m.minister_question ? esc(m.minister_question) : notDone) + "</p>" +
+        '<p class="im-mq"><span class="eyebrow">Week 1 hunch</span>' + (m.hunch ? esc(m.hunch) : notDone) + "</p>" +
+        '<p class="im-mq"><span class="eyebrow">Headline indicator</span>' + (m.headline ? esc(m.headline) : notDone) + "</p>"
       : '<p class="im-mq"><span class="eyebrow">Minister\'s Question</span><span class="muted">' +
           (D.currentWeek === 0 ? "To be declared — Week 1, Forum 1" : "No chapter submitted") + "</span></p>" +
         '<p class="muted">The focus scheme, the Minister\'s Question and the first hunch are set by the participant in Week 1, then sharpened each week.</p>';
