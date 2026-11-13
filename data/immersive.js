@@ -18,7 +18,7 @@
 // The dashboard reads this file — nothing else to touch.
 //
 // Everything below the roster fields comes from the participants' own weekly
-// dossiers (Chapters 1–4, Weeks 1–4). No marks, scores or assessment comments
+// dossiers (Chapters 1–5, Weeks 1–5). No marks, scores or assessment comments
 // are held here; `confidence` is the participant's own self-rating from their
 // Evidence Lead's Logbook. Participants with no entry beyond the roster have
 // not submitted. Note that this is a static site and the participant-view gate
@@ -29,9 +29,9 @@
 // a complete dashboard looks like.
 
 window.IMMERSIVE = {
-  currentWeek: 4,                 // last marked week; bump after each deadline
+  currentWeek: 5,                 // last marked week; bump after each deadline
   startDate: "2026-10-05",
-  updated: "2026-11-05",
+  updated: "2026-11-13",
   exampleId: "amrosea",           // worked example, read from window.SAMPLE_RECORDS
 
   // Evidence Map axes — identical to the Country Evidence Dossier.
@@ -84,7 +84,7 @@ window.IMMERSIVE = {
       focus: "Deliver the national plan for impact assessment." }
   ],
 
-  // Participants, with everything their Weeks 1–4 dossiers produced. Roster
+  // Participants, with everything their Weeks 1–5 dossiers produced. Roster
   // fields (name, country, region, organisation, role) come from the cohort
   // list; focus, minister_question, hunch, headline, journey, cells and
   // logbook are taken from the submitted chapters. A participant carrying
@@ -103,8 +103,8 @@ window.IMMERSIVE = {
         1: { status: "submitted", key: "12 schemes inventoried in Portuguese and English; Kwenda set as the anchor, with over 80% of workers informally employed" },
         2: { status: "submitted", key: "Adequacy about 90% of the poverty line; 71/29 female–male split; the coverage numerator still to reconcile" },
         3: { status: "draft", key: "IDREA 2018–19 identified (12,448 households), but it predates Kwenda, so no national survey can yet identify the scheme" },
-        4: { status: "not_started", key: "" },
-        5: { status: "not_started", key: "" },
+        4: { status: "submitted", key: "Counterfactual built on the phased comuna rollout — PSM-DiD, 4,000 households, baseline before the first payment, midline at 12 months, endline at 24–36" },
+        5: { status: "draft", key: "The cost of collecting the cash named as an administrative blind spot, with payment brigades proposed; 5.1 repeats one design across all three outcomes" },
         6: { status: "not_started", key: "" },
         7: { status: "not_started", key: "" }
       },
@@ -113,11 +113,17 @@ window.IMMERSIVE = {
         { level: "output", method: "admin", status: "amber", text: "Coverage numerator of 7,768,030 does not reconcile with the 1,751,621 beneficiaries in the inventory" },
         { level: "outcome", method: "admin", status: "green", text: "Kz 11,000 transfer against a Kz 12,181 poverty line — about 90%; 71% of recipients women" },
         { level: "output", method: "survey", status: "amber", text: "IDREA 2018–19: welfare aggregate, adult equivalence and the four A-MPI dimensions set out" },
-        { level: "outcome", method: "survey", status: "red", text: "IDREA 2018–19 predates Kwenda (2021), so the scheme cannot be identified in any national survey" }
+        { level: "outcome", method: "survey", status: "red", text: "IDREA 2018–19 predates Kwenda (2021), so the scheme cannot be identified in any national survey" },
+        { level: "outcome", method: "ie", status: "amber", text: "PSM-DiD on comunas scheduled for later rollout phases; 4,000 households, baseline, midline at 12 months, endline at 24–36" },
+        { level: "impact", method: "distribution", status: "amber", text: "Female beneficiaries and the old-age minimum against the poverty line by microsimulation; who finances Kwenda has no data source yet" },
+        { level: "output", method: "qual", status: "amber", text: "The time and money a beneficiary spends collecting the cash — named as a blind spot in the administrative record; payment brigades proposed" },
+        { level: "outcome", method: "qual", status: "amber", text: "Interviews and focus groups designed, but the same method, participants and sampling repeat across all three outcomes" }
       ],
       logbook: [
         { wk: 2, confidence: 4, moved: "Council contributions and existing programme data", feedback_from: "Ministry of Finance", changed: "Reframed the question around whether poverty reduction justifies continuity on domestic resources beyond 2029" },
-        { wk: 3, confidence: 4, moved: "Survey identified and the poverty measure set out", feedback_from: "NSO survey manager", changed: "Added the adult-equivalence scale, economies of scale within households and the four A-MPI dimensions" }
+        { wk: 3, confidence: 4, moved: "Survey identified and the poverty measure set out", feedback_from: "NSO survey manager", changed: "Added the adult-equivalence scale, economies of scale within households and the four A-MPI dimensions" },
+        { wk: 4, confidence: 4, moved: "Recorded as unmoved: the counterfactual now uses something real — the phased comuna rollout — but the method row, the identification row and the sampling row do not yet name the same design", feedback_from: "Social partner (row left blank)", changed: "Added a PSM-DiD design on neighbouring comunas in later phases, a 4,000-household sample with baseline, midline and endline, and the role of the Sobas among the ethical risks" },
+        { wk: 5, confidence: 5, moved: "Recorded at 5 after the Council exchange, while the same chapter identifies an unmeasured blind spot and leaves the Assumption Register's method and status columns empty", feedback_from: "Community representative", changed: "Named the collection cost that the administrative data cannot see and proposed payment brigades to move it from families to the system" }
       ] },
 
     { id: "p-sebastian", name: "Sean Sebastian", country: "Belize", region: "Americas",
@@ -137,7 +143,7 @@ window.IMMERSIVE = {
         2: { status: "submitted", key: "Reform-specific theory of change built; five of six indicator rows not calculable for want of a denominator" },
         3: { status: "submitted", key: "Survey verified down to forms D 003 and D 004; D 004 pools the job-loss payment with all other benefits" },
         4: { status: "submitted", key: "Entitlement-exposure difference-in-differences assigned on pre-2027 rules; no power calculation or cost figure yet" },
-        5: { status: "not_started", key: "" },
+        5: { status: "submitted", key: "Three qualitative designs on the same 4–6 against 1–3 month exposure groups as the DiD; financial diaries with follow-ups at months 3, 6 and 12" },
         6: { status: "not_started", key: "" },
         7: { status: "not_started", key: "" }
       },
@@ -149,13 +155,16 @@ window.IMMERSIVE = {
         { level: "outcome", method: "survey", status: "red", text: "D 004 section 3 groups the job-loss payment with all other social benefits" },
         { level: "impact", method: "microsim", status: "amber", text: "Mechanical entitlement illustration only, explicitly labelled as not an impact estimate" },
         { level: "outcome", method: "ie", status: "amber", text: "DiD comparing 4–6 against 1–3 months of entitlement under pre-2027 rules; no MDE yet" },
-        { level: "impact", method: "distribution", status: "amber", text: "Distributional and economic questions set out; the claimant-level panel does not yet exist" }
+        { level: "impact", method: "distribution", status: "amber", text: "Distributional and economic questions set out; the claimant-level panel does not yet exist" },
+        { level: "outcome", method: "qual", status: "amber", text: "Claimant interviews, adviser KIIs and job-search timelines on why some return to work and others do not; eligible non-claimants included to reach A1" },
+        { level: "impact", method: "qual", status: "amber", text: "Financial diaries and household income–expenditure mapping after entitlement ends, with follow-ups at months 3, 6 and 12" }
       ],
       logbook: [
         { wk: 1, confidence: 2, moved: "Legal documents and aggregate SSIF statistics are available; the causal effect of the new rules is unknown", feedback_from: "Fellow Evidence Lead", changed: "Defined the question, the anchor scheme, the stakeholders and the main evidence gaps" },
         { wk: 2, confidence: 2, moved: "Observable indicators and critical data gaps defined, but no causal evidence and no SSI workbook", feedback_from: "Ministry of Labour (reply not received)", changed: "Added a reform-specific theory of change, baseline figures and three testable assumptions" },
         { wk: 3, confidence: 2, moved: "Survey design, poverty definition and the D 004 combined item verified; still no SSIF-linked microdata", feedback_from: "NSO survey manager (reply not received)", changed: "Audited five modules, proposed three improvements and documented a rule-based entitlement illustration" },
-        { wk: 4, confidence: 2, moved: "A clearer counterfactual and linked-data plan, but no claimant panel, pre-trend test or post-2027 outcome", feedback_from: "Social partner (reply not received)", changed: "Added an entitlement-exposure DiD, financial-hardship outcomes and three updated assumptions" }
+        { wk: 4, confidence: 2, moved: "A clearer counterfactual and linked-data plan, but no claimant panel, pre-trend test or post-2027 outcome", feedback_from: "Social partner (reply not received)", changed: "Added an entitlement-exposure DiD, financial-hardship outcomes and three updated assumptions" },
+        { wk: 5, confidence: 2, moved: "Qualitative methods, respondent groups and repeat follow-up are now specified, but the linked person-level records and the 2027 outcomes still do not exist", feedback_from: "Community representative (reply not received — fourth week running)", changed: "Designed three outcome-specific studies on the same exposure groups as the DiD, included eligible non-claimants to reach non-take-up, and extended the independent-researcher safeguard to the initial thematic coding" }
       ] },
 
     { id: "p-mamo", name: "Bernard Mamo", country: "Malta", region: "Europe & Central Asia",
@@ -172,7 +181,7 @@ window.IMMERSIVE = {
         2: { status: "revised", key: "Coverage 47.6% of those aged 61+ (men 72.5%, women 25.1%); average pension 91.5% of the poverty line" },
         3: { status: "revised", key: "EU-SILC cannot split basic from non-basic pay; the TRR microsimulation returns €2.65 of pension per €1 for men, €3.24 for women" },
         4: { status: "revised", key: "Full simulation on 307,625 contributor records; DiD with continuous exposure; net €0.71 of liability per €1 collected" },
-        5: { status: "not_started", key: "" },
+        5: { status: "revised", key: "A household panel, pay-slip focus groups and employer interviews — one design per outcome; recruitment extended beyond the unions after the Council challenge" },
         6: { status: "not_started", key: "" },
         7: { status: "not_started", key: "" }
       },
@@ -186,13 +195,16 @@ window.IMMERSIVE = {
         { level: "impact", method: "microsim", status: "amber", text: "A worker on €18,000 moves from 81% to 96% of the 2065 poverty line; model workers, not microdata" },
         { level: "outcome", method: "ie", status: "amber", text: "DiD with continuous exposure, employer × year effects and a triple difference; MDE and decision rule registered in advance" },
         { level: "impact", method: "distribution", status: "amber", text: "Fiscal incidence (CEQ) designed on the lifetime simulation; awaits the EU-SILC–Class 1–FS3 linkage" },
-        { level: "impact", method: "qual", status: "amber", text: "Focus groups with shift workers through the unions planned to test assumption A1" }
+        { level: "impact", method: "qual", status: "amber", text: "A panel of about 30 low-paid shift workers with a one-month budget diary, interviewed in 2026 and again after the 50% step in 2028 — the first direct test of A1" },
+        { level: "outcome", method: "qual", status: "amber", text: "Six to eight focus groups built around example pay slips, with cognitive testing of how the pension credit is explained in the annual contribution statement" },
+        { level: "output", method: "qual", status: "amber", text: "About 20 employers, payroll accountants and labour inspectors on pay that may move into cash — the A2 route no payroll record can see" }
       ],
       logbook: [
         { wk: 1, confidence: 4, moved: "Confirmed the payroll records for 2008–2025 split basic from non-basic pay by sex and employer", feedback_from: "Fellow Evidence Lead (Mgbemena)", changed: "Dropped the ring-fenced fund from the question, added results by sex and added minimum-pension recipients to 1.3" },
         { wk: 2, confidence: 4, moved: "Payroll records can measure the income shock directly; household effects and the employer response still need survey data", feedback_from: "Ministry of Finance", changed: "Reframed A3 as the net fiscal effect — present value of added liability per €1 of extra contributions" },
         { wk: 3, confidence: 4, moved: "The microsimulation shows who gains and by how much, but group sizes and household income remain untested", feedback_from: "NSO survey manager", changed: "Replaced the E1a follow-up question with linkage of EU-SILC to Class 1 and FS3 records" },
-        { wk: 4, confidence: 4, moved: "The full simulation gives the net fiscal effect (€0.71 per €1), and the design can test the employer response from 2027", feedback_from: "Social partner", changed: "Redesigned the package (pension credit, €1,000 exemption, ring-fenced reserve) and added employer × year effects and a triple difference" }
+        { wk: 4, confidence: 4, moved: "The full simulation gives the net fiscal effect (€0.71 per €1), and the design can test the employer response from 2027", feedback_from: "Social partner", changed: "Redesigned the package (pension credit, €1,000 exemption, ring-fenced reserve) and added employer × year effects and a triple difference" },
+        { wk: 5, confidence: 4, moved: "Held at 4: the design can now explain what the payroll records cannot — how low-paid households absorb the loss, how workers value the credit and how employers respond, including in cash — but none of that evidence exists yet and the record linkage is still the main gap", feedback_from: "Community representative", changed: "Extended recruitment beyond the unions to migrant community groups, churches and agency workers with interviewers in workers' own languages; paired the data-sharing priority with the fieldwork; added A1 by sex and the reserve's return at 3% and 5%; made the yearly pension credit an intermediate outcome of the evaluation" }
       ] },
 
     { id: "p-felix", name: "Ngozi Felix", country: "Nigeria", region: "Africa",
@@ -238,7 +250,7 @@ window.IMMERSIVE = {
         2: { status: "revised", key: "Coverage 14.6% of the labour force at most, reconciled against ILOSTAT's 19.6%; average pension 88% of the minimum wage" },
         3: { status: "revised", key: "Only 48 maritime workers in NLSS 2023; the cohort model puts the maritime median at ₦23,385 against ₦63,281" },
         4: { status: "revised", key: "Randomised phase-in across 725 employers, MDE about 5.5 points, denominator moved from payroll to total crew" },
-        5: { status: "not_started", key: "" },
+        5: { status: "revised", key: "Survivors' claims added as a qualitative outcome; recruitment taken outside union channels and the data match widened to the full NIMASA register" },
         6: { status: "not_started", key: "" },
         7: { status: "not_started", key: "" }
       },
@@ -252,13 +264,17 @@ window.IMMERSIVE = {
         { level: "impact", method: "microsim", status: "amber", text: "ESCAP simulator, Pakistan comparator: a ₦32,500 floor cuts poverty 19.6% to 8.5% at about 1.2% of GDP" },
         { level: "outcome", method: "ie", status: "amber", text: "Randomised roll-out order with Callaway–Sant'Anna for staggered adoption; MDE about 5.5 points" },
         { level: "impact", method: "distribution", status: "amber", text: "Benefit incidence by consumption decile and sex designed; needs linked NIMASA–PenCom records" },
-        { level: "input", method: "qual", status: "amber", text: "Crew lists to be validated with the maritime unions, which also take seats on the steering committee" }
+        { level: "input", method: "qual", status: "amber", text: "Crew lists to be validated with the maritime unions, which also take seats on the steering committee" },
+        { level: "output", method: "qual", status: "amber", text: "25–30 workers and four focus groups at Apapa, Tin Can and Onne, with pay slips read against RSA statements, on why deductions never arrive" },
+        { level: "outcome", method: "qual", status: "amber", text: "Case histories with 12–15 widows and dependants, PFA claims officers and union welfare officers — survivors' protection, which no dataset measures" },
+        { level: "impact", method: "qual", status: "amber", text: "Employers and crewing agents, stratified by size, compliance history and phase-in group, on whether licence checks push crew onto casual contracts (A3)" }
       ],
       logbook: [
         { wk: 1, confidence: 1, moved: "PenCom publishes nothing by industry and NIMASA's labour register is not linked to RSA PINs", feedback_from: "Fellow Evidence Lead (Mamo)", changed: "Nothing this week — the Council loop was left open" },
         { wk: 2, confidence: 2, moved: "National coverage and adequacy baselines now in place: 14.6%, 4.8%, average pension 88% of the minimum wage", feedback_from: "Ministry of Finance (Mamo)", changed: "Revised the licence check from renewal-only to continuous NIMASA–PenCom matching, with a verification-cost line" },
         { wk: 3, confidence: 2, moved: "The simulator answers the Committee's cost question, not the remittance question; the survey holds only 48 maritime workers", feedback_from: "NSO survey manager", changed: "Replaced the pension module with one filter question funded by dropping s4q57g–k, and added consent-based PenCom linkage" },
-        { wk: 4, confidence: 2, moved: "A randomised phase-in gives a credible comparison and 725 employers detect about 5.5 points; the data link still does not exist", feedback_from: "Social partner (Mamo)", changed: "Moved the denominator from payroll to total crew with union validation, and made the casual share a co-primary safeguard outcome" }
+        { wk: 4, confidence: 2, moved: "A randomised phase-in gives a credible comparison and 725 employers detect about 5.5 points; the data link still does not exist", feedback_from: "Social partner (Mamo)", changed: "Moved the denominator from payroll to total crew with union validation, and made the casual share a co-primary safeguard outcome" },
+        { wk: 5, confidence: 3, moved: "Up from 2: the qualitative design explains why remittance fails and who leaves the payroll, which neither the administrative data nor the Week 4 DiD can show", feedback_from: "Community representative (Mamo)", changed: "Added recruitment outside union channels through community and religious groups, RSA balance checks with PenCom as a return to participants, survivors as a qualitative outcome, and widened the data match from crew lists to the full NIMASA register, flagging daily-paid labourers on no list as a remaining gap" }
       ] },
 
     { id: "p-okoh", name: "Nneka Esther Okoh", country: "Nigeria", region: "Africa",
